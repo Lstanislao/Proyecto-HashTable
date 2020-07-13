@@ -161,9 +161,13 @@ public class Archivo {
         aux2.InsertarFinal(tituloTxt);
         Central.setNombresResumenes(aux2);
 
-        // Se crea objeto resumen y se asigna cada atributo
+        // Se crea objeto resumen y se asigna cada atributo y se inserta al hash
         Resumen nuevoResumen = new Resumen(titulo, autores, resumen.toLowerCase(), arregloPalabrasClaves);
-
+        
+        HashTableResumen temp = Central.getResumenes();
+        temp.InsertarResumen(nuevoResumen);
+        Central.setResumenes(temp);
+        
         return nuevoResumen;
     }
 }

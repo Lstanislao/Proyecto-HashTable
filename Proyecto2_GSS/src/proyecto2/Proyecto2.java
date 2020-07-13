@@ -152,6 +152,9 @@ public class Proyecto2 {
         File archivo = new File("Sistema de diseño basado en Grid.txt");
         System.out.println(Archivo.VerificarFormatoArchivo(archivo)+" hola");
         Archivo.LeerArchivo(archivo);
+        HashTableResumen table = Central.getResumenes();
+        
+        
 
     }
 
