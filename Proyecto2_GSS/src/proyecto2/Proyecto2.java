@@ -154,7 +154,7 @@ public class Proyecto2 {
         Archivo.LeerArchivo(archivo);
         HashTableResumen table = Central.getResumenes();
         
-        
+
 
     }
 

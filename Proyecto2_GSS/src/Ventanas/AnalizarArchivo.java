@@ -5,18 +5,25 @@
  */
 package Ventanas;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author sosag
  */
-public class BuscarInvestigacion extends javax.swing.JFrame {
+public class AnalizarArchivo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form BuscarInvestigacion
-     */
-    public BuscarInvestigacion() {
+    DefaultListModel lista = new DefaultListModel();
+
+    public AnalizarArchivo() {
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+
+    public AnalizarArchivo(String resumenes) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        agrefarResumen(resumenes);
     }
 
     /**
@@ -28,25 +35,25 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton5 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaResumen = new javax.swing.JList<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         pantalla = new javax.swing.JTextArea();
-        jButtonGuardar = new javax.swing.JButton();
-        jButtonMenu = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButtonMenu = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton5.setFont(new java.awt.Font("AppleGothic", 0, 13)); // NOI18N
-        jButton5.setText("BUSCAR INVESTIGACIONES");
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 220, 40));
+        jScrollPane2.setViewportView(listaResumen);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 220, 170));
 
         pantalla.setEditable(false);
         pantalla.setColumns(20);
@@ -54,6 +61,27 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
         jScrollPane1.setViewportView(pantalla);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 470, 370));
+
+        jButton3.setFont(new java.awt.Font("AppleGothic", 0, 13)); // NOI18N
+        jButton3.setText("ANALIZAR ARCHIVO");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 220, 40));
+
+        jLabel2.setText("Seleccione un archivo para analizar:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
+        jButtonMenu.setFont(new java.awt.Font("AppleGothic", 0, 13)); // NOI18N
+        jButtonMenu.setText("MENU PRINCIPAL");
+        jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenuActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 220, 40));
 
         jButtonGuardar.setFont(new java.awt.Font("AppleGothic", 0, 13)); // NOI18N
         jButtonGuardar.setText("GUARDAR Y SALIR");
@@ -64,35 +92,25 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, 220, 40));
 
-        jButtonMenu.setFont(new java.awt.Font("AppleGothic", 0, 13)); // NOI18N
-        jButtonMenu.setText("MENU PRINCIPAL");
-        jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMenuActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 220, 40));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 270, 40));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/_lupa.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, -1));
 
         jLabel3.setFont(new java.awt.Font("AppleGothic", 1, 18)); // NOI18N
-        jLabel3.setText("BUSCAR INVESTIGACION");
+        jLabel3.setText("ANALIZAR ARCHIVO");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 230, 70));
-
-        jLabel2.setText("Introduzca la palabra clave a buscar en las");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 270, -1));
-
-        jLabel4.setText(" investigaciones relacionadas:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 210, 20));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/_docum.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/verde.png"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(800, 500));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if ("Item 1".equals(listaResumen.getSelectedValue())) {
+            pantalla.setText("Item 1");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButtonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuActionPerformed
         Interfaz a = new Interfaz();
@@ -102,7 +120,7 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // GUARDAR
-        
+
         System.exit(0);
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
@@ -123,35 +141,43 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarInvestigacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnalizarArchivo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarInvestigacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnalizarArchivo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarInvestigacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnalizarArchivo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarInvestigacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnalizarArchivo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BuscarInvestigacion().setVisible(true);
+                new AnalizarArchivo().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> listaResumen;
     private javax.swing.JTextArea pantalla;
     // End of variables declaration//GEN-END:variables
+
+    private void agrefarResumen(String resumenes) {
+        listaResumen.setModel(lista);
+        String[] resumen = resumenes.split(",");
+        for (int i = 0; i < resumen.length; i++) {
+            lista.addElement(resumen[i]);
+        }
+    }
 }
