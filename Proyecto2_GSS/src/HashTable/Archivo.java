@@ -5,6 +5,7 @@
  */
 package HashTable;
 
+import Listas.Lista;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -63,7 +64,7 @@ public class Archivo {
         return archivoValido;
     }
 
-    public Resumen LeerArchivo(File archivo) {
+    public static Resumen LeerArchivo(File archivo) {
         String titulo = "";
         String autores = "";
         String resumen = "";
@@ -124,6 +125,41 @@ public class Archivo {
         palabrasClaves = palabrasClaves.replace(".", "");
         String[] palabras = palabrasClaves.split(": ");
         String[] arregloPalabrasClaves = palabras[1].split(", ");
+                int n;
+        Lista aux1 = Central.getPalabrasClaves();
+        for (String a : arregloPalabrasClaves) {
+            n=a.length()-1;
+            if(" ".equals(a.substring(n)))
+            {
+                //System.out.println(a+"Entre");
+                a=a.substring(0,(n));
+                aux1.InsertarInicio(a);
+                //System.out.println(a+"Entre");
+
+            }
+            else
+            {
+                aux1.InsertarInicio(a);
+                //System.out.println(a);
+                
+            }
+            
+
+        }
+        Central.setPalabrasClaves(aux1);
+        
+        
+        String tituloTxt=titulo;
+        n = tituloTxt.length()-1;
+        Lista aux2 = Central.getNombresResumenes();
+        //System.out.println(tituloTxt+"hola");
+        if(" ".equals(tituloTxt.substring(n)))
+        {
+            tituloTxt=tituloTxt.substring(0,(n));
+        }
+        //System.out.println(tituloTxt+".txt");
+        aux2.InsertarFinal(tituloTxt);
+        Central.setNombresResumenes(aux2);
 
         // Se crea objeto resumen y se asigna cada atributo
         Resumen nuevoResumen = new Resumen(titulo, autores, resumen.toLowerCase(), arregloPalabrasClaves);

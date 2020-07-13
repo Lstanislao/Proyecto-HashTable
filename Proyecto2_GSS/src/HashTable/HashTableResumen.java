@@ -5,7 +5,7 @@
  */
 package HashTable;
 
-import static HashTable.Central.NombresResumenes;
+//import static HashTable.Central.NombresResumenes;
 import static HashTable.FuncionHash.Dispersion;
 import Listas.ListaR;
 import Listas.NodoR;
@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Luis Stanislao
  */
 public class HashTableResumen {
-    static final int Max = 10;  
+    private static final int Max = 10;  
     public ListaR [] tabla; //hay que ponerlo privado pero mientras necesito verla para verificar que todo este bien
     private int Elementos; 
     
@@ -39,7 +39,7 @@ public class HashTableResumen {
         {
             tabla[posicion].InsertarInicio(resumen);
             Elementos++;
-            NombresResumenes.InsertarInicio(resumen.getTitulo());
+            //NombresResumenes.InsertarInicio(resumen.getTitulo());
         }
         else
         {

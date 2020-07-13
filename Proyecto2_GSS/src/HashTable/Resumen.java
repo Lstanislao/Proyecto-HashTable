@@ -5,7 +5,7 @@
  */
 package HashTable;
 
-import static HashTable.Central.PalabrasClaves;
+import Listas.Lista;
 import Listas.Nodo;
 
 /**
@@ -32,7 +32,8 @@ public class Resumen {
         String estadistica = "";
         estadistica += titulo + "\nAutores: " + autores + "\n\nNumero de palabras del repositorio:\n";
 
-        Nodo actual = PalabrasClaves.getpFirst();
+        Lista aux = Central.getPalabrasClaves();
+        Nodo actual = aux.getpFirst();
         while (actual != null) {
             boolean palabraDelResumen = false;
             String palabraActual = actual.getDato().toString();

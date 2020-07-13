@@ -21,10 +21,44 @@ import java.util.logging.Logger;
  * @author Luis Stanislao
  */
 public class Central {
-    public static Lista PalabrasClaves = new Lista();
-    public static Lista NombresResumenes = new Lista();
-    public static HashTablePalabra Palabras= new HashTablePalabra();
-    public static HashTableResumen Resumenes = new HashTableResumen();
+    private static Lista PalabrasClaves = new Lista();
+    private static Lista NombresResumenes = new Lista();
+    private static HashTablePalabra Palabras= new HashTablePalabra();
+    private static HashTableResumen Resumenes = new HashTableResumen();
+
+    public static Lista getPalabrasClaves() {
+        return PalabrasClaves;
+    }
+
+    public static void setPalabrasClaves(Lista PalabrasClaves) {
+        Central.PalabrasClaves = PalabrasClaves;
+    }
+
+    public static Lista getNombresResumenes() {
+        return NombresResumenes;
+    }
+
+    public static void setNombresResumenes(Lista NombresResumenes) {
+        Central.NombresResumenes = NombresResumenes;
+    }
+
+    public static HashTablePalabra getPalabras() {
+        return Palabras;
+    }
+
+    public static void setPalabras(HashTablePalabra Palabras) {
+        Central.Palabras = Palabras;
+    }
+
+    public static HashTableResumen getResumenes() {
+        return Resumenes;
+    }
+
+    public static void setResumenes(HashTableResumen Resumenes) {
+        Central.Resumenes = Resumenes;
+    }
+    
+    
     
     
     public static void GuardarResumenesCargados()
