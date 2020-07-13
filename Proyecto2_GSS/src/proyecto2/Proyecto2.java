@@ -155,7 +155,6 @@ public class Proyecto2 {
         HashTableResumen table = Central.getResumenes();
         
 
-
     }
 
 }

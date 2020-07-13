@@ -5,8 +5,20 @@
  */
 package Ventanas;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 public class Interfaz extends javax.swing.JFrame {
 
+    JFileChooser seleccionado = new JFileChooser();
+    File archivo;
+    String nombreDelArchivoTxtSeleccionado;
+    
     public Interfaz() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -99,7 +111,42 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if (seleccionado.showDialog(this, "CARGAR ARCHIVO") == JFileChooser.APPROVE_OPTION) {
+            archivo = seleccionado.getSelectedFile();
+            if (archivo.canRead()) {
+                if (archivo.getName().endsWith("txt")) {
+                    nombreDelArchivoTxtSeleccionado = archivo.getName();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR. Por favor seleccione un archivo de texto (.txt)");
+                }
+            }
+        }
+
+        String linea;
+        FileReader leer;
+        BufferedReader almacenamiento;
+        /*
+        try {
+            leer = new FileReader(archivo);
+            almacenamiento = new BufferedReader(leer);
+
+            while ((linea = almacenamiento.readLine()) != null) {
+                String[] array = linea.split(",");
+
+                for (String a : array) {
+                    tree.agregarIterativo(Integer.parseInt(a));
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println(
+                    "No se puede abrir este archivo'"
+                    + archivo + "'");
+        } catch (IOException ex) {
+            System.out.println(
+                    "No se puede leer este archivo '"
+                    + archivo + "'");
+       
+        } */
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
