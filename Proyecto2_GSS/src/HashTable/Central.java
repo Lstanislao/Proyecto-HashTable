@@ -105,10 +105,12 @@ public class Central {
             {
                 try {
                     linea=almacenado.readLine();
-                    if(linea!=null)
+                    if(!"".equals(linea)&&linea!=null)
                     {
-                        System.out.println(linea);
+                        System.out.println(linea+"me tienes YA LADILLADO");
                         NombresResumenes.InsertarFinal(linea);
+                        File cargar = new File(linea);
+                        Archivo.LeerArchivo(cargar);
                     }
                 } catch (IOException ex) {
                     Logger.getLogger(Central.class.getName()).log(Level.SEVERE, null, ex);
@@ -117,6 +119,9 @@ public class Central {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Central.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        
         
            
         

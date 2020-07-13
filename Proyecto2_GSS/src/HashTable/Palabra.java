@@ -14,7 +14,7 @@ import Listas.Lista;
 public class Palabra {
     private String word;
     private int repeticion;
-    public Lista resumenes;
+    private Lista resumenes;
 
     
     public Palabra(String word, int repeticion) {
@@ -26,6 +26,7 @@ public class Palabra {
     public Palabra(String word) {
         this.word = word;
         this.repeticion = 0;
+        this.resumenes= new Lista();
     }
     
     public String getWord() {
@@ -43,4 +44,14 @@ public class Palabra {
     public void setRepeticion(int repeticion) {
         this.repeticion = repeticion;
     }  
+
+    public Lista getResumenes() {
+        return resumenes;
+    }
+
+    public void setResumenes(Lista resumenes) {
+        this.resumenes = resumenes;
+    }
+    
+    
 }

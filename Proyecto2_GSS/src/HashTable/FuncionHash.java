@@ -10,7 +10,7 @@ package HashTable;
  * @author Luis Stanislao
  */
 public class FuncionHash {
-    static final int Max = 10; //numero espacion de la tabla
+    static final int Max = 50; //numero espacion de la tabla
     static final double Factor = 0.318034;//Constante utilizada para hacer la dispension por multiplicacion
 //cambiar para que no sea el boleta del libro JAJAJA
     

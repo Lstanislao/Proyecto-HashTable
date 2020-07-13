@@ -125,31 +125,10 @@ public class Archivo {
         palabrasClaves = palabrasClaves.replace(".", "");
         String[] palabras = palabrasClaves.split(": ");
         String[] arregloPalabrasClaves = palabras[1].split(", ");
-                int n;
-        Lista aux1 = Central.getPalabrasClaves();
-        for (String a : arregloPalabrasClaves) {
-            n=a.length()-1;
-            if(" ".equals(a.substring(n)))
-            {
-                //System.out.println(a+"Entre");
-                a=a.substring(0,(n));
-                aux1.InsertarInicio(a);
-                //System.out.println(a+"Entre");
-
-            }
-            else
-            {
-                aux1.InsertarInicio(a);
-                //System.out.println(a);
-                
-            }
-            
-
-        }
-        Central.setPalabrasClaves(aux1);
         
-        
-        String tituloTxt=titulo;
+       
+        int n;
+                String tituloTxt=titulo;
         n = tituloTxt.length()-1;
         Lista aux2 = Central.getNombresResumenes();
         //System.out.println(tituloTxt+"hola");
@@ -157,9 +136,43 @@ public class Archivo {
         {
             tituloTxt=tituloTxt.substring(0,(n));
         }
-        //System.out.println(tituloTxt+".txt");
+        tituloTxt=tituloTxt+".txt";
+        System.out.println("MAMGUEVO QUE TE PASA QUE NO AGARRAS EL .TXT " +tituloTxt);
         aux2.InsertarFinal(tituloTxt);
         Central.setNombresResumenes(aux2);
+        
+        
+        
+        HashTablePalabra hash = Central.getPalabras();
+        Lista aux1 = Central.getPalabrasClaves();
+        for (String a : arregloPalabrasClaves) {
+            n=a.length()-1;
+            if(" ".equals(a.substring(n)))
+            {
+                //System.out.println(a+"Entre");
+                hash.InsertarPalabra(a,tituloTxt);
+                a=a.substring(0,(n));
+                aux1.InsertarInicio(a);
+                System.out.println(a+"Entre");
+
+            }
+            else
+            {
+                aux1.InsertarInicio(a);
+                hash.InsertarPalabra(a,tituloTxt);
+                //System.out.println(a);
+                
+            }
+            
+
+        }
+        Central.setPalabrasClaves(aux1);
+        Central.setPalabras(hash);
+        
+        
+
+        
+        
 
         // Se crea objeto resumen y se asigna cada atributo y se inserta al hash
         Resumen nuevoResumen = new Resumen(titulo, autores, resumen.toLowerCase(), arregloPalabrasClaves);

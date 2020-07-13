@@ -187,7 +187,7 @@ public class ListaP {
         }
     }
     
-    public NodoP Buscar(String valor)
+    public Palabra Buscar(String valor)
     {
         if(!EsVacio())
         {
@@ -206,13 +206,15 @@ public class ListaP {
                     pos = Proximo(pos);      
                 }
             }
-            return pos;  
+            return pos.getDato();  
         }
         else
         {
             return null;
         }
     }
+    
+  
     
     
     

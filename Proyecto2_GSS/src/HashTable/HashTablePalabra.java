@@ -8,6 +8,7 @@ package HashTable;
 import Listas.NodoP;
 import Listas.ListaP;
 import static HashTable.FuncionHash.Dispersion;
+import Listas.Lista;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Luis Stanislao
  */
 public class HashTablePalabra {
-    static final int Max = 10;  
+    static final int Max = 50;  
     public ListaP [] tabla; //hay que ponerlo privado pero mientras necesito verla para verificar que todo este bien
     private int Elementos; 
     
@@ -29,7 +30,7 @@ public class HashTablePalabra {
         Elementos=0;
     }
     //NOTA HAY QUE VERIFICAR QUE YA NO SE HAYA INGRESADO LUIS
-    public void InsertarPalabra(Palabra palabra)
+    /*public void InsertarPalabra(Palabra palabra)
     {
         int posicion;
         posicion=Dispersion(palabra.getWord());
@@ -43,6 +44,28 @@ public class HashTablePalabra {
         {
             JOptionPane.showMessageDialog(null,"El elemento que desea ingresar ya se encuentra en la tabla");
         }
+
+    }*/
+    
+    public void InsertarPalabra(String pal, String resumen)
+    {
+        Palabra palabra = new Palabra(pal);
+        int posicion;
+        posicion=Dispersion(palabra.getWord());
+        NodoP encontrado = tabla[posicion].Buscar(palabra);
+        if (encontrado==null)
+        {
+            tabla[posicion].InsertarInicio(palabra);
+            Elementos++;
+        }
+        else
+        {
+            palabra = tabla[posicion].Buscar(pal);
+
+        }
+        Lista aux = palabra.getResumenes();
+        aux.InsertarFinal(resumen);
+        palabra.setResumenes(aux);
 
     }
     
@@ -75,12 +98,12 @@ public class HashTablePalabra {
     {
         int posicion;
         posicion=Dispersion(palabra);
-        NodoP encontrado =tabla[posicion].Buscar(palabra);
+        Palabra encontrado =tabla[posicion].Buscar(palabra);
         if (encontrado!=null)
         {
-            Palabra aux = encontrado.getDato();
-            System.out.println(aux.getWord());
-            return aux;
+            
+            System.out.println(encontrado.getWord());
+            return encontrado;
         }
         JOptionPane.showMessageDialog(null,"Palabra no encontrada");
         return null;

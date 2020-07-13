@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Luis Stanislao
  */
 public class HashTableResumen {
-    private static final int Max = 10;  
+    private static final int Max = 50;  
     public ListaR [] tabla; //hay que ponerlo privado pero mientras necesito verla para verificar que todo este bien
     private int Elementos; 
     
