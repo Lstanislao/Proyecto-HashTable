@@ -1,0 +1,5 @@
+Complemento de software para el diseño de fundaciones.
+Sistema de diseño basado en Grid
+Arquitectura referencial para mecanismos de Internacionalización y localización en PHP.
+hola
+
