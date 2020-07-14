@@ -6,9 +6,12 @@
 package Ventanas;
 
 import HashTable.Central;
+import HashTable.HashTableResumen;
+import HashTable.Resumen;
 import Listas.Lista;
 import Listas.Nodo;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,27 +42,11 @@ public class AnalizarArchivo extends javax.swing.JFrame {
         }
         return cadena;
     }
-    /*
-     private String vector[];
 
-    private String ordenar() {
-        for (int i = 0; i < vector.length; i++) {
-            for (int j = 0; j < vector.length && i != j; j++) {
-                if (vector[i].compareToIgnoreCase(vector[j]) < 0) {
-                    String aux = vector[i];
-                    vector[i] = vector[j];
-                    vector[j] = aux;
-                }
-            }
-        }
-        String cadena = "";
-        for (int i = 0; i < vector.length; i++) {
-            cadena += vector[i];
-        }
-        return cadena;
-    }
-    */
-   
+    /*
+    Funcion para ordenar los titulos de las investigaciones del repositorio
+    por orden alfabetico y mostrarselos al usuario para que pueda seleccionar uno.
+     */
     private void agregarResumen(String resumenes) {
 
         listaResumen.setModel(lista);
@@ -73,31 +60,12 @@ public class AnalizarArchivo extends javax.swing.JFrame {
                 }
             }
         }
+
         for (int i = 0; i < resumen.length; i++) {
             lista.addElement(resumen[i]);
         }
     }
 
-    /*
-    private String vector[];
-    
-    private String ordenar(){
-        for (int i = 0; i < vector.length; i++) {
-            for (int j = 0; j < vector.length && i!=j; j++) {
-                if (vector[i].compareToIgnoreCase(vector[j])<0) {
-                    String aux = vector[i];
-                    vector[i]=vector[j];
-                    vector[j]=aux;
-                }
-            }
-        }
-        String cadena = "";
-        for (int i = 0; i < vector.length; i++) {
-            cadena+=vector[i];
-        }
-        return cadena;
-    }
-     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -179,9 +147,17 @@ public class AnalizarArchivo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if ("Item 1".equals(listaResumen.getSelectedValue())) {
-            pantalla.setText("Item 1");
+        System.out.println("El resumen es: " + listaResumen.getSelectedValue());
+
+        HashTableResumen resumenes = Central.getResumenes();
+        String titulo = listaResumen.getSelectedValue();
+        if (titulo != null) {
+            Resumen resumenActual = resumenes.BuscarResumen(titulo);
+            pantalla.setText(resumenActual.Estadisticas());
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una investigación.");
         }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButtonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuActionPerformed

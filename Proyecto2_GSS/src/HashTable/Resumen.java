@@ -36,7 +36,7 @@ public class Resumen {
         long inicio = System.nanoTime();
 
         String estadistica = "";
-        estadistica += titulo + "\nAutores: " + autores + "\n\nNumero de palabras del repositorio:\n";
+        estadistica += titulo + "\nAutores: " + autores + "\n\nNúmero de palabras del repositorio:\n\n";
 
         Lista aux = Central.getPalabrasClaves();
         Nodo actual = aux.getpFirst();
@@ -63,7 +63,7 @@ public class Resumen {
 
         /* Cuento las veces que se repite la palabra clave del resumen en el 
         cuerpo del resumen*/
-        estadistica += "\nNumero de palabras del resumen:\n";
+        estadistica += "\nNúmero de palabras del resumen:\n\n";
 
         for (String palabraClave : palabrasClaves) {
             estadistica += contarRepeticion(palabraClave);
@@ -75,7 +75,7 @@ public class Resumen {
         // Calculo el tiempo de ejecucion en milisegundos
         long tiempo = (fin - inicio) / 1000000;
 
-        estadistica += "\nTiempo empleado: " + tiempo + " milisegundos.";
+        estadistica += "\nTiempo empleado: " + (fin - inicio) + " nanosegundos/ " + tiempo + " milisegundos.";
 
         return estadistica;
     }

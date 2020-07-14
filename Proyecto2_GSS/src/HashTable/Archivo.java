@@ -130,14 +130,24 @@ public class Archivo {
 
         }
 
+        // Arreglando formato del cuerpo del resumen
         resumen = resumen.replace(",", "");
         resumen = resumen.replace(".", "");
-        autores = autores.substring(0, autores.length() - 1) + ".";
+
+        // Arreglando formato de los autores
+        autores = autores.substring(0, autores.length() - 2) + ".";
+
+        // Arreglando formato de las palabras claves
+        int n = palabrasClaves.length() - 1;
         palabrasClaves = palabrasClaves.replace(".", "");
+
+        if (" ".equals(palabrasClaves.substring(n))) {
+            palabrasClaves = palabrasClaves.substring(0, n);
+        }
+
         String[] palabras = palabrasClaves.split(": ");
         String[] arregloPalabrasClaves = palabras[1].split(", ");
 
-        int n;
         String tituloTxt = titulo;
         n = tituloTxt.length() - 1;
         //Lista aux2 = Central.getNombresResumenes();
@@ -153,29 +163,17 @@ public class Archivo {
         //Central.setNombresResumenes(aux2);
 
         /* Una vez que ya tengo la informacion, agrego las palabras claves del resumen
-        a la tabla hash de palabras claves*/
+        a la tabla hash y a la lista de palabras claves*/
         HashTablePalabra hash = Central.getPalabras();
         Lista aux1 = Central.getPalabrasClaves();
         for (String a : arregloPalabrasClaves) {
-            n = a.length() - 1;
-            if (" ".equals(a.substring(n))) {
-                //System.out.println(a+"Entre");
-                hash.InsertarPalabra(a, titulo);
-                a = a.substring(0, (n));
-                aux1.InsertarInicio(a);
-                System.out.println(a + "Entre");
-
-            } else {
-                aux1.InsertarInicio(a);
-                hash.InsertarPalabra(a, titulo);
-                //System.out.println(a);
-
-            }
-
+            aux1.InsertarInicio(a);
+            hash.InsertarPalabra(a, titulo);
         }
+
         Central.setPalabrasClaves(aux1);
         Central.setPalabras(hash);
-        
+
         /* Se crea objeto resumen y se asigna cada atributo. Luego se inserta a 
         la tabla hash*/
         Resumen nuevoResumen = new Resumen(titulo, autores, resumen.toLowerCase(), arregloPalabrasClaves);
@@ -183,10 +181,11 @@ public class Archivo {
         HashTableResumen temp = Central.getResumenes();
         temp.InsertarResumen(nuevoResumen);
         Central.setResumenes(temp);
-        /////
+
+        // Agrego titulo a la lista de titulos
         Lista titulos = Central.getTitulosResumenes();
         titulos.InsertarFinal(titulo);
         Central.setTitulosResumenes(titulos);
-        /////
+
     }
 }
