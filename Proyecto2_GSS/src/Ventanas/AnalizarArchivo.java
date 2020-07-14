@@ -31,10 +31,10 @@ public class AnalizarArchivo extends javax.swing.JFrame {
     }
 
     private String ListaAString(Lista lista) {
-        Nodo aux = lista.First();
+        Nodo aux = lista.getpFirst();
         String cadena = "";
         while (aux != null) {
-            cadena += aux.getDato();
+            cadena += aux.getDato() + ",";
             aux = aux.getPnext();
         }
         return cadena;
