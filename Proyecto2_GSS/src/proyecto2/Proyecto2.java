@@ -55,7 +55,7 @@ public class Proyecto2 {
 //        //System.out.println("");
 //        //System.out.println(table.BuscarPalabra(Sosa).getWord()+" sos");
 //        //System.out.println(table.tabla[9].Buscar(Sosa));
-//
+////
 //        String tit = "Complemento de software para el diseño de fundaciones.";
 //        String autores = "Raquel Sandoval, Iván Loscher, Christian Guillén-Drija,";
 //        String cuerpo = "El adelanto tecnológico presente hoy en día ha traído "
@@ -160,14 +160,10 @@ public class Proyecto2 {
         Archivo.LeerArchivo(archivo1);
         Archivo.LeerArchivo(archivo2);
         Central.GuardarResumenesCargados();*/
-        
-        
-        
-        HashTablePalabra table = Central.getPalabras();
-        System.out.println(table.tabla[33].getpFirst().getDato().getResumenes().First().getPnext().getDato()+" ERES CRACK");
-        
-        
 
+//        HashTablePalabra table = Central.getPalabras();
+//        System.out.println(table.tabla[33].getpFirst().getDato().getResumenes().First().getPnext().getDato()+" ERES CRACK");
+//        
     }
 
 }

@@ -16,19 +16,19 @@ import javax.swing.JOptionPane;
  * @author Luis Stanislao
  */
 public class HashTablePalabra {
-    static final int Max = 50;  
-    public ListaP [] tabla; //hay que ponerlo privado pero mientras necesito verla para verificar que todo este bien
-    private int Elementos; 
-    
+
+    static final int Max = 50;
+    public ListaP[] tabla; //hay que ponerlo privado pero mientras necesito verla para verificar que todo este bien
+    private int Elementos;
 
     public HashTablePalabra() {
         tabla = new ListaP[Max];
-        for (int i = 0; i < Max; i++) 
-        {
-            tabla[i]=new ListaP();
+        for (int i = 0; i < Max; i++) {
+            tabla[i] = new ListaP();
         }
-        Elementos=0;
+        Elementos = 0;
     }
+
     //NOTA HAY QUE VERIFICAR QUE YA NO SE HAYA INGRESADO LUIS
     /*public void InsertarPalabra(Palabra palabra)
     {
@@ -46,20 +46,21 @@ public class HashTablePalabra {
         }
 
     }*/
-    
-    public void InsertarPalabra(String pal, String resumen)
-    {
+
+    /*
+    Funcion que se encarga de insertar en la tabla hash una palabra clave nueva.
+    En caso de que la palabra clave ya pertenezca a la tabla, se agrega el titulo 
+    del resumen a la lista de resumenes relacionados con la palabra clave.
+     */
+    public void InsertarPalabra(String pal, String resumen) {
         Palabra palabra = new Palabra(pal);
         int posicion;
-        posicion=Dispersion(palabra.getWord());
+        posicion = Dispersion(palabra.getWord());
         NodoP encontrado = tabla[posicion].Buscar(palabra);
-        if (encontrado==null)
-        {
+        if (encontrado == null) {
             tabla[posicion].InsertarInicio(palabra);
             Elementos++;
-        }
-        else
-        {
+        } else {
             palabra = tabla[posicion].Buscar(pal);
 
         }
@@ -68,59 +69,54 @@ public class HashTablePalabra {
         palabra.setResumenes(aux);
 
     }
-    
-    public void EliminarPalabra(Palabra palabra)
-    {
+
+    public void EliminarPalabra(Palabra palabra) {
         int posicion;
-        posicion=Dispersion(palabra.getWord());
+        posicion = Dispersion(palabra.getWord());
         NodoP eliminar = tabla[posicion].Buscar(palabra);
         tabla[posicion].Eliminar(eliminar);
-        Elementos++;       
+        Elementos++;
     }
-    
-    public Palabra BuscarPalabra(Palabra palabra)
-    {
+
+    public Palabra BuscarPalabra(Palabra palabra) {
         int posicion;
-        posicion=Dispersion(palabra.getWord());
-        NodoP encontrado =tabla[posicion].Buscar(palabra);
-        if (encontrado!=null)
-        {
+        posicion = Dispersion(palabra.getWord());
+        NodoP encontrado = tabla[posicion].Buscar(palabra);
+        if (encontrado != null) {
             Palabra aux = encontrado.getDato();
             //System.out.println(aux.getWord());
             return aux;
         }
-        JOptionPane.showMessageDialog(null,"Palabra no encontrada");
+        JOptionPane.showMessageDialog(null, "Palabra no encontrada");
         return null;
 
     }
-    
-    public Palabra BuscarPalabra(String palabra)
-    {
+
+    /*
+    Funcion que verifica si una palabra clave ya pertenece a la tabla hash.
+     */
+    public Palabra BuscarPalabra(String palabra) {
         int posicion;
-        posicion=Dispersion(palabra);
-        Palabra encontrado =tabla[posicion].Buscar(palabra);
-        if (encontrado!=null)
-        {
-            
+        posicion = Dispersion(palabra);
+        Palabra encontrado = tabla[posicion].Buscar(palabra);
+        if (encontrado != null) {
+
             //System.out.println(encontrado.getWord());
             return encontrado;
         }
-        JOptionPane.showMessageDialog(null,"Palabra no encontrada");
+        JOptionPane.showMessageDialog(null, "Palabra no encontrada");
         return null;
 
     }
-    
-    public String BuscarDocumentos(String word)
-    {
-        Palabra aux=BuscarPalabra(word);
-        String resumenes = "Las investigaciones relacionadas con "+word+" son: \n\n";
-        resumenes=resumenes+(String)aux.getResumenes().ListaResumenes();
+
+    /*
+    Funcion que busca las investigaciones relacionas con una palabra clave.
+     */
+    public String BuscarDocumentos(String word) {
+        Palabra aux = BuscarPalabra(word);
+        String resumenes = "Las investigaciones relacionadas con " + word + " son: \n\n";
+        resumenes += (String) aux.getResumenes().ListaResumenes();
         return resumenes;
     }
-    
 
- 
-    
-    
-    
 }

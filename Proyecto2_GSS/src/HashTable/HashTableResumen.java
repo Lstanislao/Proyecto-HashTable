@@ -16,38 +16,37 @@ import javax.swing.JOptionPane;
  * @author Luis Stanislao
  */
 public class HashTableResumen {
-    private static final int Max = 50;  
-    public ListaR [] tabla; //hay que ponerlo privado pero mientras necesito verla para verificar que todo este bien
-    private int Elementos; 
-    
+
+    private static final int Max = 50;
+    public ListaR[] tabla; //hay que ponerlo privado pero mientras necesito verla para verificar que todo este bien
+    private int Elementos;
 
     public HashTableResumen() {
         tabla = new ListaR[Max];
-        for (int i = 0; i < Max; i++) 
-        {
-            tabla[i]=new ListaR();
+        for (int i = 0; i < Max; i++) {
+            tabla[i] = new ListaR();
         }
-        Elementos=0;
+        Elementos = 0;
     }
-    
-    public void InsertarResumen(Resumen resumen)
-    {
+
+    /*
+    Funcion que se encarga de insertar en la tabla hash un resumen nuevo.
+    En caso de que el resumen ya pertenezca a la tabla, se muestra un mensaje.
+     */
+    public void InsertarResumen(Resumen resumen) {
         int posicion;
-        posicion=Dispersion(resumen.getTitulo());
+        posicion = Dispersion(resumen.getTitulo());
         NodoR encontrado = tabla[posicion].Buscar(resumen);
-        if (encontrado==null)
-        {
+        if (encontrado == null) {
             tabla[posicion].InsertarInicio(resumen);
             Elementos++;
             //NombresResumenes.InsertarInicio(resumen.getTitulo());
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null,"El elemento que desea ingresar ya se encuentra en la tabla");
+        } else {
+            JOptionPane.showMessageDialog(null, "El elemento que desea ingresar ya se encuentra en la tabla");
         }
     }
-    
-   /* public void EliminarResumen(Resumen resumen)
+
+    /* public void EliminarResumen(Resumen resumen)
     {
         int posicion;
         posicion=Dispersion(resumen.getAutores());
@@ -55,38 +54,35 @@ public class HashTableResumen {
         tabla[posicion].Eliminar(eliminar);
         Elementos++;       
     }*/
-        
-    public Resumen BuscarResumen(Resumen resumen)
-    {
+    public Resumen BuscarResumen(Resumen resumen) {
         int posicion;
-        posicion=Dispersion(resumen.getTitulo());
-        NodoR encontrado =tabla[posicion].Buscar(resumen);
-        if (encontrado!=null)
-        {
+        posicion = Dispersion(resumen.getTitulo());
+        NodoR encontrado = tabla[posicion].Buscar(resumen);
+        if (encontrado != null) {
             Resumen aux = encontrado.getDato();
             //System.out.println(aux.getTitulo());
             return aux;
         }
-        JOptionPane.showMessageDialog(null,"Resumen no encontrado");
+        JOptionPane.showMessageDialog(null, "Resumen no encontrado");
         return null;
 
     }
-    
-    public Resumen BuscarResumen(String resumen)
-    {
+
+    /*
+    Funcion que verifica si un resumen ya pertenece a la tabla hash.
+     */
+    public Resumen BuscarResumen(String resumen) {
         int posicion;
-        posicion=Dispersion(resumen);
-        NodoR encontrado =tabla[posicion].Buscar(resumen);
-        if (encontrado!=null)
-        {
+        posicion = Dispersion(resumen);
+        NodoR encontrado = tabla[posicion].Buscar(resumen);
+        if (encontrado != null) {
             Resumen aux = encontrado.getDato();
             //System.out.println(aux.getTitulo());
             return aux;
         }
-        JOptionPane.showMessageDialog(null,"Resumen no encontrado");
+        JOptionPane.showMessageDialog(null, "Resumen no encontrado");
         return null;
 
     }
-    
-    
+
 }

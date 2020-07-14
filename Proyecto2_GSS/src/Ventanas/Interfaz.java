@@ -21,13 +21,12 @@ public class Interfaz extends javax.swing.JFrame {
     JFileChooser seleccionado = new JFileChooser();
     File archivo;
     String nombreDelArchivoTxtSeleccionado;
-    
+
     public Interfaz() {
         initComponents();
         this.setLocationRelativeTo(null);
         boolean iniciado = Central.isIniciado();
-        if (!iniciado)
-        {
+        if (!iniciado) {
             Central.CargarResumenes();
             Central.setIniciado(true);
         }
@@ -121,27 +120,40 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        /*  
+        Boton Agregar Archivo de Datos: Permite seleccionar un archivo ".txt" del
+        ordenador para su utilizacion en el sistema. Este archivo de datos es 
+        leido por el sistema para asegurarse que cumpla con el formato adecuado.
+        De lo contrario aparecerá un mensaje indicando cual debe ser el formato.
+         */
+
         Lista aux = Central.getNombresResumenes();
         if (seleccionado.showDialog(this, "CARGAR ARCHIVO") == JFileChooser.APPROVE_OPTION) {
             archivo = seleccionado.getSelectedFile();
             if (archivo.canRead()) {
                 if (archivo.getName().endsWith("txt")) {
                     nombreDelArchivoTxtSeleccionado = archivo.getName();
-                    
-                    
+
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR. Por favor seleccione un archivo de texto (.txt)");
                 }
             }
-    
-        }if(Archivo.VerificarFormatoArchivo(archivo))
-        {
-            aux.InsertarFinal(nombreDelArchivoTxtSeleccionado);
-            Archivo.LeerArchivo(archivo);
-        }else
-        {
-            JOptionPane.showMessageDialog(null,"El archivo no cumple con el formato");
+
         }
+
+        if (Archivo.VerificarFormatoArchivo(archivo)) {
+            aux.InsertarFinal(nombreDelArchivoTxtSeleccionado);
+
+            Archivo.LeerArchivo(archivo);
+        } else {
+            String mensaje = "El formato del archivo seleccionado no es válido.\n"
+                    + "El formato del archivo debe ser:\n\n"
+                    + "Titulo\n\nAutores\nAutor1\n...[mas autores]...\nAutorN\n"
+                    + "\nResumen\n...[cuerpo del resumen]...\n\nPalabras claves:"
+                    + "palabra1, palabra2, ...[más palabras]..., palabraN.";
+            JOptionPane.showMessageDialog(null, mensaje);
+        }
+
         Central.setNombresResumenes(aux);
         /*-String linea;
         FileReader leer;
@@ -179,7 +191,7 @@ public class Interfaz extends javax.swing.JFrame {
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         System.out.println(Central.getNombresResumenes().ListaResumenes());
         Central.GuardarResumenesCargados();
-        
+
         System.exit(0);
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 

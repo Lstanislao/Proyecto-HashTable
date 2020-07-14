@@ -116,21 +116,21 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // GUARDAR
-        
+
         System.exit(0);
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       String input = busqueda.getText();//NECESITA SER VALIDADO
-       HashTablePalabra hash = Central.getPalabras();
-       String output =hash.BuscarDocumentos(input);
-       pantalla.setText(output);
-       
+        String input = busqueda.getText();//NECESITA SER VALIDADO
+        HashTablePalabra hash = Central.getPalabras();
+        String output = hash.BuscarDocumentos(input);
+        pantalla.setText(output);
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void busquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaActionPerformed
- 
-       
+
+
     }//GEN-LAST:event_busquedaActionPerformed
 
     /**

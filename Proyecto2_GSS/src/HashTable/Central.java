@@ -21,9 +21,10 @@ import java.util.logging.Logger;
  * @author Luis Stanislao
  */
 public class Central {
+
     private static Lista PalabrasClaves = new Lista();
     private static Lista NombresResumenes = new Lista();
-    private static HashTablePalabra Palabras= new HashTablePalabra();
+    private static HashTablePalabra Palabras = new HashTablePalabra();
     private static HashTableResumen Resumenes = new HashTableResumen();
     private static boolean Iniciado = false;
 
@@ -66,15 +67,14 @@ public class Central {
     public static void setResumenes(HashTableResumen Resumenes) {
         Central.Resumenes = Resumenes;
     }
-    
-    
-    
-    
-    public static void GuardarResumenesCargados()
-    {
+
+    /*
+    Funcion para guardar en el archivo por defecto los resumenes del repositorio
+    para que al correr el programa se puedan cargar.
+     */
+    public static void GuardarResumenesCargados() {
         String resumenes = NombresResumenes.ListaResumenes();
         System.out.println(resumenes);
-
 
         File archivo;
         PrintWriter escribir;
@@ -96,27 +96,26 @@ public class Central {
             } catch (FileNotFoundException | UnsupportedEncodingException ex) {
                 Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
-        
     }
-    
-    public static void CargarResumenes()
-    {
+
+    /*
+    Funcion que se encarga de leer el archivo por defecto, obtener los resumenes
+    del repositorio y leerlos para cargar las tablas hash.
+     */
+    public static void CargarResumenes() {
         File miArchivo;
         miArchivo = new File("ArchivoPorDefecto.txt");
         String linea;
         try {
             FileReader leer = new FileReader(miArchivo);
             BufferedReader almacenado = new BufferedReader(leer);
-            linea="";
-            while(linea!=null)
-            {
+            linea = "";
+            while (linea != null) {
                 try {
-                    linea=almacenado.readLine();
-                    if(!"".equals(linea)&&linea!=null)
-                    {
-                        System.out.println(linea+"me tienes YA LADILLADO");
+                    linea = almacenado.readLine();
+                    if (!"".equals(linea) && linea != null) {
+                        System.out.println(linea + "me tienes YA LADILLADO");
                         NombresResumenes.InsertarFinal(linea);
                         File cargar = new File(linea);
                         Archivo.LeerArchivo(cargar);
@@ -128,16 +127,9 @@ public class Central {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Central.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-        
-           
-        
 
-        
     }
-    
+
     /*Grafo mygraph = new Grafo(1000);
         File miArchivo;
         String nombre, calle, urb, line, cadena[];
@@ -213,5 +205,5 @@ public class Central {
         }
         Central.setGraph(mygraph);
     }
-    */
+     */
 }

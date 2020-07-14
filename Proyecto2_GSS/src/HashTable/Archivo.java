@@ -18,6 +18,11 @@ import java.io.IOException;
  */
 public class Archivo {
 
+    /*
+    Funcion que se encarga de verificar que el formato del archivo sea valido. 
+    Para esto debe tener titulo, la palabra autores, la palabra resumen y las
+    palabras claves.
+     */
     public static boolean VerificarFormatoArchivo(File archivo) {
         boolean archivoValido;
         boolean tieneTitulo = false;
@@ -35,7 +40,6 @@ public class Archivo {
             while ((linea = almacenamiento.readLine()) != null) {
 
                 if (!"".equals(linea)) {
-                    System.out.println(linea);
                     if (linea.toLowerCase().equals("autores")) {
                         tieneAutores = true;
                     } else if (linea.toLowerCase().equals("resumen")) {
@@ -64,7 +68,14 @@ public class Archivo {
         return archivoValido;
     }
 
-    public static Resumen LeerArchivo(File archivo) {
+    /*
+    Funcion que se encarga de leer el archivo y extraer la informacion necesaria 
+    del mismo: el titulo, los autores, el cuerpo del resumen y las palabras claves.
+    
+    Una vez que obtengo todos los campos, creo un objeto Resumen y lo agrego a la
+    tabla hash.
+     */
+    public static void LeerArchivo(File archivo) {
         String titulo = "";
         String autores = "";
         String resumen = "";
@@ -125,64 +136,52 @@ public class Archivo {
         palabrasClaves = palabrasClaves.replace(".", "");
         String[] palabras = palabrasClaves.split(": ");
         String[] arregloPalabrasClaves = palabras[1].split(", ");
-        
-       
+
         int n;
-        String tituloTxt=titulo;
-        n = tituloTxt.length()-1;
+        String tituloTxt = titulo;
+        n = tituloTxt.length() - 1;
         //Lista aux2 = Central.getNombresResumenes();
         //System.out.println(tituloTxt+"hola");
-        if(" ".equals(tituloTxt.substring(n)))
-        {
-            tituloTxt=tituloTxt.substring(0,(n));
+        if (" ".equals(tituloTxt.substring(n))) {
+            tituloTxt = tituloTxt.substring(0, (n));
         }
-        tituloTxt=tituloTxt.replace(".","");
-        tituloTxt=tituloTxt+".txt";
+        tituloTxt = tituloTxt.replace(".", "");
+        tituloTxt = tituloTxt + ".txt";
         //System.out.println("MAMGUEVO QUE TE PASA QUE NO AGARRAS EL .TXT " +tituloTxt);
         //aux2.InsertarFinal(tituloTxt);
         //System.out.println("EXPLICAMEEE\n"+aux2.ListaResumenes());
         //Central.setNombresResumenes(aux2);
-        
-        
-        
+
+        /* Una vez que ya tengo la informacion, agrego las palabras claves del resumen
+        a la tabla hash de palabras claves*/
         HashTablePalabra hash = Central.getPalabras();
         Lista aux1 = Central.getPalabrasClaves();
         for (String a : arregloPalabrasClaves) {
-            n=a.length()-1;
-            if(" ".equals(a.substring(n)))
-            {
+            n = a.length() - 1;
+            if (" ".equals(a.substring(n))) {
                 //System.out.println(a+"Entre");
-                hash.InsertarPalabra(a,titulo);
-                a=a.substring(0,(n));
+                hash.InsertarPalabra(a, titulo);
+                a = a.substring(0, (n));
                 aux1.InsertarInicio(a);
-                System.out.println(a+"Entre");
+                System.out.println(a + "Entre");
+
+            } else {
+                aux1.InsertarInicio(a);
+                hash.InsertarPalabra(a, titulo);
+                //System.out.println(a);
 
             }
-            else
-            {
-                aux1.InsertarInicio(a);
-                hash.InsertarPalabra(a,titulo);
-                //System.out.println(a);
-                
-            }
-            
 
         }
         Central.setPalabrasClaves(aux1);
         Central.setPalabras(hash);
-        
-        
 
-        
-        
-
-        // Se crea objeto resumen y se asigna cada atributo y se inserta al hash
+        /* Se crea objeto resumen y se asigna cada atributo. Luego se inserta a 
+        la tabla hash*/
         Resumen nuevoResumen = new Resumen(titulo, autores, resumen.toLowerCase(), arregloPalabrasClaves);
-        
+
         HashTableResumen temp = Central.getResumenes();
         temp.InsertarResumen(nuevoResumen);
         Central.setResumenes(temp);
-        
-        return nuevoResumen;
     }
 }
