@@ -27,6 +27,7 @@ public class Central {
     private static HashTablePalabra Palabras = new HashTablePalabra();
     private static HashTableResumen Resumenes = new HashTableResumen();
     private static boolean Iniciado = false;
+    private static Lista TitulosResumenes = new Lista();
 
     public static boolean isIniciado() {
         return Iniciado;
@@ -67,6 +68,16 @@ public class Central {
     public static void setResumenes(HashTableResumen Resumenes) {
         Central.Resumenes = Resumenes;
     }
+
+    public static Lista getTitulosResumenes() {
+        return TitulosResumenes;
+    }
+
+    public static void setTitulosResumenes(Lista TitulosResumenes) {
+        Central.TitulosResumenes = TitulosResumenes;
+    }
+    
+    
 
     /*
     Funcion para guardar en el archivo por defecto los resumenes del repositorio
@@ -129,7 +140,7 @@ public class Central {
         }
 
     }
-
+    
     /*Grafo mygraph = new Grafo(1000);
         File miArchivo;
         String nombre, calle, urb, line, cadena[];

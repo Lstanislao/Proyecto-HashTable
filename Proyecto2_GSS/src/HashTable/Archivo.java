@@ -175,7 +175,7 @@ public class Archivo {
         }
         Central.setPalabrasClaves(aux1);
         Central.setPalabras(hash);
-
+        
         /* Se crea objeto resumen y se asigna cada atributo. Luego se inserta a 
         la tabla hash*/
         Resumen nuevoResumen = new Resumen(titulo, autores, resumen.toLowerCase(), arregloPalabrasClaves);
@@ -183,5 +183,10 @@ public class Archivo {
         HashTableResumen temp = Central.getResumenes();
         temp.InsertarResumen(nuevoResumen);
         Central.setResumenes(temp);
+        /////
+        Lista titulos = Central.getTitulosResumenes();
+        titulos.InsertarFinal(titulo);
+        Central.setTitulosResumenes(titulos);
+        /////
     }
 }

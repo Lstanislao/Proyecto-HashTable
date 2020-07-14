@@ -5,6 +5,9 @@
  */
 package Ventanas;
 
+import HashTable.Central;
+import Listas.Lista;
+import Listas.Nodo;
 import javax.swing.DefaultListModel;
 
 /**
@@ -20,12 +23,81 @@ public class AnalizarArchivo extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    public AnalizarArchivo(String resumenes) {
+    public AnalizarArchivo(Lista nombres) {
         initComponents();
         this.setLocationRelativeTo(null);
-        agrefarResumen(resumenes);
+        String string = ListaAString(nombres);
+        agregarResumen(string);
     }
 
+    private String ListaAString(Lista lista) {
+        Nodo aux = lista.First();
+        String cadena = "";
+        while (aux != null) {
+            cadena += aux.getDato();
+            aux = aux.getPnext();
+        }
+        return cadena;
+    }
+    /*
+     private String vector[];
+
+    private String ordenar() {
+        for (int i = 0; i < vector.length; i++) {
+            for (int j = 0; j < vector.length && i != j; j++) {
+                if (vector[i].compareToIgnoreCase(vector[j]) < 0) {
+                    String aux = vector[i];
+                    vector[i] = vector[j];
+                    vector[j] = aux;
+                }
+            }
+        }
+        String cadena = "";
+        for (int i = 0; i < vector.length; i++) {
+            cadena += vector[i];
+        }
+        return cadena;
+    }
+    */
+   
+    private void agregarResumen(String resumenes) {
+
+        listaResumen.setModel(lista);
+        String[] resumen = resumenes.split(",");
+        for (int i = 0; i < resumen.length; i++) {
+            for (int j = 0; j < resumen.length && i != j; j++) {
+                if (resumen[i].compareToIgnoreCase(resumen[j]) < 0) {
+                    String aux = resumen[i];
+                    resumen[i] = resumen[j];
+                    resumen[j] = aux;
+                }
+            }
+        }
+        for (int i = 0; i < resumen.length; i++) {
+            lista.addElement(resumen[i]);
+        }
+    }
+
+    /*
+    private String vector[];
+    
+    private String ordenar(){
+        for (int i = 0; i < vector.length; i++) {
+            for (int j = 0; j < vector.length && i!=j; j++) {
+                if (vector[i].compareToIgnoreCase(vector[j])<0) {
+                    String aux = vector[i];
+                    vector[i]=vector[j];
+                    vector[j]=aux;
+                }
+            }
+        }
+        String cadena = "";
+        for (int i = 0; i < vector.length; i++) {
+            cadena+=vector[i];
+        }
+        return cadena;
+    }
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,14 +125,14 @@ public class AnalizarArchivo extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(listaResumen);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 220, 170));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 540, 80));
 
         pantalla.setEditable(false);
         pantalla.setColumns(20);
         pantalla.setRows(5);
         jScrollPane1.setViewportView(pantalla);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 470, 370));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 780, 270));
 
         jButton3.setFont(new java.awt.Font("AppleGothic", 0, 13)); // NOI18N
         jButton3.setText("ANALIZAR ARCHIVO");
@@ -69,7 +141,7 @@ public class AnalizarArchivo extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 220, 40));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 220, 40));
 
         jLabel2.setText("Seleccione un archivo para analizar:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
@@ -141,13 +213,17 @@ public class AnalizarArchivo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AnalizarArchivo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnalizarArchivo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AnalizarArchivo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnalizarArchivo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AnalizarArchivo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnalizarArchivo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AnalizarArchivo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnalizarArchivo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -173,11 +249,4 @@ public class AnalizarArchivo extends javax.swing.JFrame {
     private javax.swing.JTextArea pantalla;
     // End of variables declaration//GEN-END:variables
 
-    private void agrefarResumen(String resumenes) {
-        listaResumen.setModel(lista);
-        String[] resumen = resumenes.split(",");
-        for (int i = 0; i < resumen.length; i++) {
-            lista.addElement(resumen[i]);
-        }
-    }
 }

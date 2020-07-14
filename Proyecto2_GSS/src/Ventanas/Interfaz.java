@@ -113,7 +113,7 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AnalizarArchivo a = new AnalizarArchivo();
+        AnalizarArchivo a = new AnalizarArchivo(Central.getTitulosResumenes());
         a.setVisible(true);
         this.setVisible(false);
 
