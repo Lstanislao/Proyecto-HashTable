@@ -5,6 +5,9 @@
  */
 package Ventanas;
 
+import HashTable.Central;
+import HashTable.HashTablePalabra;
+
 /**
  *
  * @author sosag
@@ -33,7 +36,7 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
         pantalla = new javax.swing.JTextArea();
         jButtonGuardar = new javax.swing.JButton();
         jButtonMenu = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        busqueda = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -46,6 +49,11 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("AppleGothic", 0, 13)); // NOI18N
         jButton5.setText("BUSCAR INVESTIGACIONES");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 220, 40));
 
         pantalla.setEditable(false);
@@ -72,7 +80,13 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 220, 40));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 270, 40));
+
+        busqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busquedaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 270, 40));
 
         jLabel3.setFont(new java.awt.Font("AppleGothic", 1, 18)); // NOI18N
         jLabel3.setText("BUSCAR INVESTIGACION");
@@ -105,6 +119,19 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
         
         System.exit(0);
     }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       String input = busqueda.getText();//NECESITA SER VALIDADO
+       HashTablePalabra hash = Central.getPalabras();
+       String output =hash.BuscarDocumentos(input);
+       pantalla.setText(output);
+       
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void busquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaActionPerformed
+ 
+       
+    }//GEN-LAST:event_busquedaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,6 +169,7 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField busqueda;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonMenu;
@@ -151,7 +179,6 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextArea pantalla;
     // End of variables declaration//GEN-END:variables
 }

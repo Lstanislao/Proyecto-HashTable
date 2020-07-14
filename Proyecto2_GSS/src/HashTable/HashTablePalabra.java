@@ -86,7 +86,7 @@ public class HashTablePalabra {
         if (encontrado!=null)
         {
             Palabra aux = encontrado.getDato();
-            System.out.println(aux.getWord());
+            //System.out.println(aux.getWord());
             return aux;
         }
         JOptionPane.showMessageDialog(null,"Palabra no encontrada");
@@ -102,12 +102,20 @@ public class HashTablePalabra {
         if (encontrado!=null)
         {
             
-            System.out.println(encontrado.getWord());
+            //System.out.println(encontrado.getWord());
             return encontrado;
         }
         JOptionPane.showMessageDialog(null,"Palabra no encontrada");
         return null;
 
+    }
+    
+    public String BuscarDocumentos(String word)
+    {
+        Palabra aux=BuscarPalabra(word);
+        String resumenes = "Las investigaciones relacionadas con "+word+" son: \n\n";
+        resumenes=resumenes+(String)aux.getResumenes().ListaResumenes();
+        return resumenes;
     }
     
 

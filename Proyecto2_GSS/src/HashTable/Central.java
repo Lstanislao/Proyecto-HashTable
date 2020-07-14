@@ -25,6 +25,15 @@ public class Central {
     private static Lista NombresResumenes = new Lista();
     private static HashTablePalabra Palabras= new HashTablePalabra();
     private static HashTableResumen Resumenes = new HashTableResumen();
+    private static boolean Iniciado = false;
+
+    public static boolean isIniciado() {
+        return Iniciado;
+    }
+
+    public static void setIniciado(boolean Iniciado) {
+        Central.Iniciado = Iniciado;
+    }
 
     public static Lista getPalabrasClaves() {
         return PalabrasClaves;

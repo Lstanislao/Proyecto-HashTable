@@ -210,6 +210,26 @@ public class Lista {
         return cadena;
     }
     
+    public String BuscarResumenes()
+    {
+        String cadena ="";
+        if (EsVacio()==false)
+        {
+            Nodo aux= First();
+            for (int i = 0; i < getSize(); i++) 
+            {
+                cadena=cadena+aux.getDato()+", ";
+                aux=aux.getPnext();
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"La lista esta vacia");
+        }
+        return cadena;
+        
+    }
+    
         public void InsertarFinal(Object dato)
     {
         Nodo nuevo = new Nodo(dato);

@@ -7,6 +7,7 @@ package Ventanas;
 
 import HashTable.Archivo;
 import HashTable.Central;
+import Listas.Lista;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,7 +25,13 @@ public class Interfaz extends javax.swing.JFrame {
     public Interfaz() {
         initComponents();
         this.setLocationRelativeTo(null);
-        Central.CargarResumenes();
+        boolean iniciado = Central.isIniciado();
+        if (!iniciado)
+        {
+            Central.CargarResumenes();
+            Central.setIniciado(true);
+        }
+
     }
 
     /**
@@ -114,11 +121,13 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Lista aux = Central.getNombresResumenes();
         if (seleccionado.showDialog(this, "CARGAR ARCHIVO") == JFileChooser.APPROVE_OPTION) {
             archivo = seleccionado.getSelectedFile();
             if (archivo.canRead()) {
                 if (archivo.getName().endsWith("txt")) {
                     nombreDelArchivoTxtSeleccionado = archivo.getName();
+                    
                     
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR. Por favor seleccione un archivo de texto (.txt)");
@@ -127,10 +136,13 @@ public class Interfaz extends javax.swing.JFrame {
     
         }if(Archivo.VerificarFormatoArchivo(archivo))
         {
-            System.out.println("hey");
+            aux.InsertarFinal(nombreDelArchivoTxtSeleccionado);
             Archivo.LeerArchivo(archivo);
+        }else
+        {
+            JOptionPane.showMessageDialog(null,"El archivo no cumple con el formato");
         }
-
+        Central.setNombresResumenes(aux);
         /*-String linea;
         FileReader leer;
         BufferedReader almacenamiento;

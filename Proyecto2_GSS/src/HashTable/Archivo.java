@@ -128,9 +128,9 @@ public class Archivo {
         
        
         int n;
-                String tituloTxt=titulo;
+        String tituloTxt=titulo;
         n = tituloTxt.length()-1;
-        Lista aux2 = Central.getNombresResumenes();
+        //Lista aux2 = Central.getNombresResumenes();
         //System.out.println(tituloTxt+"hola");
         if(" ".equals(tituloTxt.substring(n)))
         {
@@ -138,10 +138,10 @@ public class Archivo {
         }
         tituloTxt=tituloTxt.replace(".","");
         tituloTxt=tituloTxt+".txt";
-        System.out.println("MAMGUEVO QUE TE PASA QUE NO AGARRAS EL .TXT " +tituloTxt);
-        aux2.InsertarFinal(tituloTxt);
-        System.out.println("EXPLICAMEEE\n"+aux2.ListaResumenes());
-        Central.setNombresResumenes(aux2);
+        //System.out.println("MAMGUEVO QUE TE PASA QUE NO AGARRAS EL .TXT " +tituloTxt);
+        //aux2.InsertarFinal(tituloTxt);
+        //System.out.println("EXPLICAMEEE\n"+aux2.ListaResumenes());
+        //Central.setNombresResumenes(aux2);
         
         
         
@@ -152,7 +152,7 @@ public class Archivo {
             if(" ".equals(a.substring(n)))
             {
                 //System.out.println(a+"Entre");
-                hash.InsertarPalabra(a,tituloTxt);
+                hash.InsertarPalabra(a,titulo);
                 a=a.substring(0,(n));
                 aux1.InsertarInicio(a);
                 System.out.println(a+"Entre");
@@ -161,7 +161,7 @@ public class Archivo {
             else
             {
                 aux1.InsertarInicio(a);
-                hash.InsertarPalabra(a,tituloTxt);
+                hash.InsertarPalabra(a,titulo);
                 //System.out.println(a);
                 
             }

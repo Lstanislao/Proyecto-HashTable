@@ -163,7 +163,8 @@ public class Proyecto2 {
         
         
         
-        HashTableResumen table = Central.getResumenes();
+        HashTablePalabra table = Central.getPalabras();
+        System.out.println(table.tabla[33].getpFirst().getDato().getResumenes().First().getPnext().getDato()+" ERES CRACK");
         
         
 

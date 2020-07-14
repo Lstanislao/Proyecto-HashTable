@@ -64,7 +64,7 @@ public class HashTableResumen {
         if (encontrado!=null)
         {
             Resumen aux = encontrado.getDato();
-            System.out.println(aux.getTitulo());
+            //System.out.println(aux.getTitulo());
             return aux;
         }
         JOptionPane.showMessageDialog(null,"Resumen no encontrado");
@@ -80,7 +80,7 @@ public class HashTableResumen {
         if (encontrado!=null)
         {
             Resumen aux = encontrado.getDato();
-            System.out.println(aux.getTitulo());
+            //System.out.println(aux.getTitulo());
             return aux;
         }
         JOptionPane.showMessageDialog(null,"Resumen no encontrado");
