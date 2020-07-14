@@ -5,6 +5,8 @@
  */
 package Ventanas;
 
+import HashTable.Archivo;
+import HashTable.Central;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,6 +24,7 @@ public class Interfaz extends javax.swing.JFrame {
     public Interfaz() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Central.CargarResumenes();
     }
 
     /**
@@ -116,16 +119,22 @@ public class Interfaz extends javax.swing.JFrame {
             if (archivo.canRead()) {
                 if (archivo.getName().endsWith("txt")) {
                     nombreDelArchivoTxtSeleccionado = archivo.getName();
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR. Por favor seleccione un archivo de texto (.txt)");
                 }
             }
+    
+        }if(Archivo.VerificarFormatoArchivo(archivo))
+        {
+            System.out.println("hey");
+            Archivo.LeerArchivo(archivo);
         }
 
-        String linea;
+        /*-String linea;
         FileReader leer;
         BufferedReader almacenamiento;
-        /*
+        
         try {
             leer = new FileReader(archivo);
             almacenamiento = new BufferedReader(leer);
@@ -156,7 +165,8 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        // GUARDAR
+        System.out.println(Central.getNombresResumenes().ListaResumenes());
+        Central.GuardarResumenesCargados();
         
         System.exit(0);
     }//GEN-LAST:event_jButtonGuardarActionPerformed

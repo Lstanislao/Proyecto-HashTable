@@ -136,9 +136,11 @@ public class Archivo {
         {
             tituloTxt=tituloTxt.substring(0,(n));
         }
+        tituloTxt=tituloTxt.replace(".","");
         tituloTxt=tituloTxt+".txt";
         System.out.println("MAMGUEVO QUE TE PASA QUE NO AGARRAS EL .TXT " +tituloTxt);
         aux2.InsertarFinal(tituloTxt);
+        System.out.println("EXPLICAMEEE\n"+aux2.ListaResumenes());
         Central.setNombresResumenes(aux2);
         
         

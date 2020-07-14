@@ -1,5 +1,5 @@
-Sistema de diseño basado en Grid.txt
-Sistema de diseño basado en Grid.txt
-Complemento de software para el diseño de fundaciones..txt
-Complemento de software para el diseño de fundaciones..txt
+Complemento de software para el diseño de fundaciones.txt
+Complemento de software para el diseño de fundaciones.txt
+Arquitectura referencial para mecanismos de Internacionalización y localización en PHP.txt
+Arquitectura referencial para mecanismos de Internacionalización y localización en PHP.txt
 

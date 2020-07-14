@@ -15,6 +15,7 @@ import static HashTable.FuncionHash.*;
 import Listas.NodoP;
 import HashTable.Palabra;
 import Listas.Lista;
+import Ventanas.Interfaz;
 import java.io.File;
 
 public class Proyecto2 {
@@ -23,6 +24,8 @@ public class Proyecto2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Interfaz bienvenido = new Interfaz();
+        bienvenido.setVisible(true);
 //        System.out.println("EL SEGUNDO 20 MUCHACHOS");
 //        HashTablePalabra table = new HashTablePalabra();
 //        Palabra hola = new Palabra("hola");
@@ -149,10 +152,19 @@ public class Proyecto2 {
 ////        }
 //
 //        System.out.println(nuevoResumen1.Estadisticas());
-        File archivo = new File("Sistema de diseño basado en Grid.txt");
+        /*File archivo = new File("Sistema de diseño basado en Grid.txt");
         System.out.println(Archivo.VerificarFormatoArchivo(archivo)+" hola");
         Archivo.LeerArchivo(archivo);
+        File archivo1 = new File("Arquitectura referencial para mecanismos de Internacionalización y localización en PHP..txt");
+        File archivo2 = new File("Complemento de software para el diseño de fundaciones..txt");
+        Archivo.LeerArchivo(archivo1);
+        Archivo.LeerArchivo(archivo2);
+        Central.GuardarResumenesCargados();*/
+        
+        
+        
         HashTableResumen table = Central.getResumenes();
+        
         
 
     }
