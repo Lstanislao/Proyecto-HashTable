@@ -93,7 +93,7 @@ public class Archivo {
 
             while ((linea = almacenamiento.readLine()) != null) {
 
-                if (!"".equals(linea)) {
+                if (!linea.isBlank()) {
                     if (linea.toLowerCase().equals("autores")) {
                         lineaAutores = true;
                     } else if (linea.toLowerCase().equals("resumen")) {
@@ -130,6 +130,15 @@ public class Archivo {
 
         }
 
+        // Arreglando formato del titulo
+        int x = titulo.length() - 2;
+
+        if (titulo.endsWith(". ")) {
+            titulo = titulo.substring(0, x);
+        } else {
+            titulo = titulo.substring(0, x + 1);
+        }
+
         // Arreglando formato del cuerpo del resumen
         resumen = resumen.replace(",", "");
         resumen = resumen.replace(".", "");
@@ -139,10 +148,8 @@ public class Archivo {
 
         // Arreglando formato de las palabras claves
         palabrasClaves = palabrasClaves.replace(".", "");
-        int n = palabrasClaves.length() - 1;
-
-        if (" ".equals(palabrasClaves.substring(n))) {
-            palabrasClaves = palabrasClaves.substring(0, n);
+        while (palabrasClaves.endsWith(" ")) {
+            palabrasClaves = palabrasClaves.substring(0, palabrasClaves.length() - 1);
         }
 
         System.out.println(palabrasClaves + "houla");
@@ -156,13 +163,13 @@ public class Archivo {
 
         Resumen nuevoResumen = new Resumen(titulo, autores, resumen.toLowerCase(), arregloPalabrasClaves);
         HashTableResumen temp = Central.getResumenes();
-        //temp.InsertarResumen(nuevoResumen);
+
         boolean seguir = temp.InsertarResumen(nuevoResumen);
         Central.setResumenes(temp);
 
         if (seguir) {
             String tituloTxt = titulo;
-            n = tituloTxt.length() - 1;
+            int n = tituloTxt.length() - 1;
             //Lista aux2 = Central.getNombresResumenes();
             //System.out.println(tituloTxt+"hola");
             if (" ".equals(tituloTxt.substring(n))) {
@@ -180,8 +187,11 @@ public class Archivo {
             HashTablePalabra hash = Central.getPalabras();
             Lista aux1 = Central.getPalabrasClaves();
             for (String a : arregloPalabrasClaves) {
-                aux1.InsertarInicio(a);
-                hash.InsertarPalabra(a, titulo);
+                boolean laInserte = hash.InsertarPalabra(a, titulo);
+
+                if (laInserte) {
+                    aux1.InsertarInicio(a);
+                }
             }
 
             Central.setPalabrasClaves(aux1);

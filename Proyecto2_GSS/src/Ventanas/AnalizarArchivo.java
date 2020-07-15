@@ -98,9 +98,10 @@ public class AnalizarArchivo extends javax.swing.JFrame {
         pantalla.setEditable(false);
         pantalla.setColumns(20);
         pantalla.setRows(5);
+        pantalla.setMargin(new java.awt.Insets(6, 6, 6, 6));
         jScrollPane1.setViewportView(pantalla);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 780, 270));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 620, 260));
 
         jButton3.setFont(new java.awt.Font("AppleGothic", 0, 13)); // NOI18N
         jButton3.setText("ANALIZAR ARCHIVO");

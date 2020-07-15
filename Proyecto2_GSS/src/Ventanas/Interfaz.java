@@ -64,7 +64,7 @@ public class Interfaz extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 220, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 260, 40));
 
         jButton2.setFont(new java.awt.Font("AppleGothic", 0, 16)); // NOI18N
         jButton2.setText("ANALIZAR ARCHIVO");
@@ -73,7 +73,7 @@ public class Interfaz extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 220, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 260, 40));
 
         jButton3.setFont(new java.awt.Font("AppleGothic", 0, 16)); // NOI18N
         jButton3.setText("BUSCAR INVESTIGACIONES");
@@ -82,7 +82,7 @@ public class Interfaz extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 220, 40));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 260, 40));
 
         jButtonGuardar.setFont(new java.awt.Font("AppleGothic", 0, 16)); // NOI18N
         jButtonGuardar.setText("GUARDAR Y SALIR");
@@ -91,7 +91,7 @@ public class Interfaz extends javax.swing.JFrame {
                 jButtonGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 220, 40));
+        getContentPane().add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 260, 40));
 
         jLabel2.setFont(new java.awt.Font("AppleGothic", 1, 20)); // NOI18N
         jLabel2.setText("PROYECTO 2 GONZALEZ, STANISLAO, SOSA");
@@ -108,7 +108,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/verde.png"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(800, 500));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 300));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 330));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -128,8 +128,10 @@ public class Interfaz extends javax.swing.JFrame {
         De lo contrario aparecerá un mensaje indicando cual debe ser el formato.
          */
 
+        JOptionPane.showMessageDialog(null, "Es importante que el archivo seleccionado "
+                + "se encuentre en la carpeta del proyecto.");
         Lista aux = Central.getNombresResumenes();
-        HashTableResumen hash= Central.getResumenes();
+        HashTableResumen hash = Central.getResumenes();
         if (seleccionado.showDialog(this, "CARGAR ARCHIVO") == JFileChooser.APPROVE_OPTION) {
             archivo = seleccionado.getSelectedFile();
             if (archivo.canRead()) {
@@ -144,16 +146,14 @@ public class Interfaz extends javax.swing.JFrame {
         }
 
         if (Archivo.VerificarFormatoArchivo(archivo)) {
-            String nombre = nombreDelArchivoTxtSeleccionado.replace(".txt","");
-            System.out.println(nombre+ "SERA------------------------------------");
-            System.out.println(hash.BuscarResumen(nombre)+" AQUI-----------------------------------------");
-            if(hash.BuscarResumen(nombre)==null)
-            {
+            String nombre = nombreDelArchivoTxtSeleccionado.replace(".txt", "");
+            System.out.println(nombre + "SERA------------------------------------");
+            System.out.println(hash.BuscarResumen(nombre) + " AQUI-----------------------------------------");
+            if (hash.BuscarResumen(nombre) == null) {
                 aux.InsertarFinal(nombreDelArchivoTxtSeleccionado);
                 Archivo.LeerArchivo(archivo);
-                
-            }else
-            {
+
+            } else {
                 JOptionPane.showMessageDialog(null, "Ese Resumen ya ha sido cargado");
             }
 
@@ -167,31 +167,7 @@ public class Interfaz extends javax.swing.JFrame {
         }
 
         Central.setNombresResumenes(aux);
-        /*-String linea;
-        FileReader leer;
-        BufferedReader almacenamiento;
-        
-        try {
-            leer = new FileReader(archivo);
-            almacenamiento = new BufferedReader(leer);
-
-            while ((linea = almacenamiento.readLine()) != null) {
-                String[] array = linea.split(",");
-
-                for (String a : array) {
-                    tree.agregarIterativo(Integer.parseInt(a));
-                }
-            }
-        } catch (FileNotFoundException ex) {
-            System.out.println(
-                    "No se puede abrir este archivo'"
-                    + archivo + "'");
-        } catch (IOException ex) {
-            System.out.println(
-                    "No se puede leer este archivo '"
-                    + archivo + "'");
-       
-        } */
+        ;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

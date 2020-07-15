@@ -140,6 +140,8 @@ public class ListaR {
         setSize(getSize() + 1);
     }
 
+    /* Busca un resumen en la lista y retorna el nodo donde lo encontro. Si no 
+    lo encuentra, retorna null*/
     public NodoR Buscar(Resumen valor) {
         if (!EsVacio()) {
             boolean encontrado = false;
@@ -159,7 +161,7 @@ public class ListaR {
         }
     }
 
-    /* Busca un elemento en la lista y retorna el nodo donde lo encontro. Si no 
+    /* Busca un titulo en la lista y retorna el nodo donde lo encontro. Si no 
     lo encuentra, retorna null*/
     public NodoR Buscar(String valor) {
         if (!EsVacio()) {
@@ -167,6 +169,7 @@ public class ListaR {
             NodoR pos = First();
             //while(pos!=null && encontrado==false)
             for (int i = 0; i < getSize(); i++) {
+
                 if (pos.getDato().getTitulo().equals(valor)) {
                     encontrado = true;
                     break;

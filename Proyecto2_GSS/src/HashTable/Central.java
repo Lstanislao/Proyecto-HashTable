@@ -76,8 +76,6 @@ public class Central {
     public static void setTitulosResumenes(Lista TitulosResumenes) {
         Central.TitulosResumenes = TitulosResumenes;
     }
-    
-    
 
     /*
     Funcion para guardar en el archivo por defecto los resumenes del repositorio
@@ -140,7 +138,7 @@ public class Central {
         }
 
     }
-    
+
     /*Grafo mygraph = new Grafo(1000);
         File miArchivo;
         String nombre, calle, urb, line, cadena[];

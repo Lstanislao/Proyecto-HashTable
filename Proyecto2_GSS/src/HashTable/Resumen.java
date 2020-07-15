@@ -36,7 +36,7 @@ public class Resumen {
         long inicio = System.nanoTime();
 
         String estadistica = "";
-        estadistica += titulo + "\nAutores: " + autores + "\n\nNúmero de palabras del repositorio:\n\n";
+        estadistica += titulo + ".\nAutores: " + autores + "\n\nNúmero de palabras del repositorio:\n\n";
 
         Lista aux = Central.getPalabrasClaves();
         Nodo actual = aux.getpFirst();
@@ -102,7 +102,11 @@ public class Resumen {
             a la palabra encontrada es una letra o no, podemos saber si 
             realmente encontramos la palabra buscada.
              */
-            if ((int) cuerpo.charAt(indice - 1) < 97 || (int) cuerpo.charAt(indice + palabraClave.length()) > 122) {
+            boolean anteriorNoEsLetra = (int) cuerpo.charAt(indice - 1) < 97
+                    || (int) cuerpo.charAt(indice - 1) > 122;
+            boolean posteriorNoEsLetra = (int) cuerpo.charAt(indice + palabraClave.length()) < 97
+                    || (int) cuerpo.charAt(indice + palabraClave.length()) > 122;
+            if (anteriorNoEsLetra && posteriorNoEsLetra) {
                 cont++;
             }
 

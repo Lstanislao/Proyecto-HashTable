@@ -42,6 +42,7 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -94,13 +95,16 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 230, 70));
 
         jLabel2.setText("Introduzca la palabra clave a buscar en las");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 270, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 270, -1));
 
-        jLabel4.setText(" investigaciones relacionadas:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 210, 20));
+        jLabel4.setText("el uso de acentos:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 270, 20));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/_docum.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLabel6.setText("investigaciones relacionadas. Es importante");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 270, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/verde.png"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(800, 500));
@@ -123,17 +127,30 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         String input = busqueda.getText();//NECESITA SER VALIDADO
-        HashTablePalabra hash = Central.getPalabras();
-        String output = hash.BuscarDocumentos(input);
-        if (output!=null)
-        {
-            pantalla.setText(output);
+
+        if (!input.isBlank()) {
+            int n = input.length() - 1;
+
+            if (" ".equals(input.substring(n))) {
+                input = input.substring(0, n);
+            }
+
+            HashTablePalabra hash = Central.getPalabras();
+            String output = hash.BuscarDocumentos(input);
+            if (output != null) {
+                pantalla.setText(output);
+            } else {
+                JOptionPane.showMessageDialog(null, "La palabra no fue encontrada. "
+                        + "Recuerde hacer uso de acentos e ingresar exactamente\n"
+                        + "la palabra que se quiere buscar. Intente ingresar solo "
+                        + "letras, con excepción de aquellas\npalabras que poseen"
+                        + " otro carácter.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ingresó ninguna palabra. "
+                    + "Por favor, ingrese una palabra e intente de nuevo.");
         }
-        else
-        {
-            JOptionPane.showMessageDialog(null,"Palabra no encontrada");
-        }
-        
+
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -187,6 +204,7 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea pantalla;
     // End of variables declaration//GEN-END:variables

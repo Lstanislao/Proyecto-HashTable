@@ -43,7 +43,9 @@ public class HashTableResumen {
             //NombresResumenes.InsertarInicio(resumen.getTitulo());
             return true;
         } else {
-            JOptionPane.showMessageDialog(null, "El elemento que desea ingresar ya se encuentra en la tabla");
+            JOptionPane.showMessageDialog(null, "La investigación ya ha sido "
+                    + "ingresada anteriormente. Intente agregar una investigación"
+                    + " diferente.");
             return false;
         }
     }
@@ -65,7 +67,7 @@ public class HashTableResumen {
             //System.out.println(aux.getTitulo());
             return aux;
         }
-       
+
         return null;
 
     }
@@ -82,7 +84,7 @@ public class HashTableResumen {
             //System.out.println(aux.getTitulo());
             return aux;
         }
-        
+
         return null;
 
     }

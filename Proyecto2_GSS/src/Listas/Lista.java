@@ -173,7 +173,7 @@ public class Lista {
         if (EsVacio() == false) {
             Nodo aux = First();
             for (int i = 0; i < getSize(); i++) {
-                cadena = cadena + aux.getDato() + "\n";
+                cadena = cadena + aux.getDato() + ".\n\n";
                 aux = aux.getPnext();
             }
         } else {

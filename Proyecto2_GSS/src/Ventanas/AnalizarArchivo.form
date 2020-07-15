@@ -56,7 +56,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="170" width="780" height="270"/>
+          <AbsoluteConstraints x="90" y="170" width="620" height="260"/>
         </Constraint>
       </Constraints>
 
@@ -67,6 +67,9 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[6, 6, 6, 6]"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>

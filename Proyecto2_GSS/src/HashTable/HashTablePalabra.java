@@ -52,7 +52,8 @@ public class HashTablePalabra {
     En caso de que la palabra clave ya pertenezca a la tabla, se agrega el titulo 
     del resumen a la lista de resumenes relacionados con la palabra clave.
      */
-    public void InsertarPalabra(String pal, String resumen) {
+    public boolean InsertarPalabra(String pal, String resumen) {
+        boolean insertada = false;
         pal = pal.toLowerCase();
         Palabra palabra = new Palabra(pal);
         int posicion;
@@ -61,6 +62,7 @@ public class HashTablePalabra {
         if (encontrado == null) {
             tabla[posicion].InsertarInicio(palabra);
             Elementos++;
+            insertada = true;
         } else {
             palabra = tabla[posicion].Buscar(pal);
 
@@ -69,6 +71,7 @@ public class HashTablePalabra {
         aux.InsertarFinal(resumen);
         palabra.setResumenes(aux);
 
+        return insertada;
     }
 
     public void EliminarPalabra(Palabra palabra) {
@@ -117,7 +120,7 @@ public class HashTablePalabra {
     public String BuscarDocumentos(String word) {
         word = word.toLowerCase();
         Palabra aux = BuscarPalabra(word);
-        String resumenes = "Las investigaciones relacionadas con " + word + " son: \n\n";
+        String resumenes = "Las investigaciones relacionadas con '" + word + "' son: \n\n";
         if (aux != null) {
             resumenes += (String) aux.getResumenes().ListaResumenes();
             return resumenes;
