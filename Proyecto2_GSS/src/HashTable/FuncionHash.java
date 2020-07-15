@@ -47,8 +47,8 @@ public class FuncionHash {
     {
 
         long valor = 0;
-        for (int i = 0; i < palabra.length(); i++) {
-            valor = valor * 27 + (int) palabra.charAt(i);
+        for (int i = 0; i < Math.min(palabra.length(),11) ; i++) {
+            valor = valor * 17 + (int) palabra.charAt(i);
         }
 
         if (valor < 0)//si el valor en un caso llegase a sobrepasar el limite se convierte en negativo por lo tanto se verifica que nomvaya a devolver un negativo 

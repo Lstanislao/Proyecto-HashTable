@@ -7,6 +7,7 @@ package Ventanas;
 
 import HashTable.Archivo;
 import HashTable.Central;
+import HashTable.HashTableResumen;
 import Listas.Lista;
 import java.io.BufferedReader;
 import java.io.File;
@@ -128,6 +129,7 @@ public class Interfaz extends javax.swing.JFrame {
          */
 
         Lista aux = Central.getNombresResumenes();
+        HashTableResumen hash= Central.getResumenes();
         if (seleccionado.showDialog(this, "CARGAR ARCHIVO") == JFileChooser.APPROVE_OPTION) {
             archivo = seleccionado.getSelectedFile();
             if (archivo.canRead()) {
@@ -142,9 +144,19 @@ public class Interfaz extends javax.swing.JFrame {
         }
 
         if (Archivo.VerificarFormatoArchivo(archivo)) {
-            aux.InsertarFinal(nombreDelArchivoTxtSeleccionado);
+            String nombre = nombreDelArchivoTxtSeleccionado.replace(".txt","");
+            System.out.println(nombre+ "SERA------------------------------------");
+            System.out.println(hash.BuscarResumen(nombre)+" AQUI-----------------------------------------");
+            if(hash.BuscarResumen(nombre)==null)
+            {
+                aux.InsertarFinal(nombreDelArchivoTxtSeleccionado);
+                Archivo.LeerArchivo(archivo);
+                
+            }else
+            {
+                JOptionPane.showMessageDialog(null, "Ese Resumen ya ha sido cargado");
+            }
 
-            Archivo.LeerArchivo(archivo);
         } else {
             String mensaje = "El formato del archivo seleccionado no es válido.\n"
                     + "El formato del archivo debe ser:\n\n"

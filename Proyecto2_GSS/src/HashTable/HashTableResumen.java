@@ -33,7 +33,7 @@ public class HashTableResumen {
     Funcion que se encarga de insertar en la tabla hash un resumen nuevo.
     En caso de que el resumen ya pertenezca a la tabla, se muestra un mensaje.
      */
-    public void InsertarResumen(Resumen resumen) {
+    public boolean InsertarResumen(Resumen resumen) {
         int posicion;
         posicion = Dispersion(resumen.getTitulo());
         NodoR encontrado = tabla[posicion].Buscar(resumen);
@@ -41,8 +41,10 @@ public class HashTableResumen {
             tabla[posicion].InsertarInicio(resumen);
             Elementos++;
             //NombresResumenes.InsertarInicio(resumen.getTitulo());
+            return true;
         } else {
             JOptionPane.showMessageDialog(null, "El elemento que desea ingresar ya se encuentra en la tabla");
+            return false;
         }
     }
 
@@ -63,7 +65,7 @@ public class HashTableResumen {
             //System.out.println(aux.getTitulo());
             return aux;
         }
-        JOptionPane.showMessageDialog(null, "Resumen no encontrado");
+       
         return null;
 
     }
@@ -80,7 +82,7 @@ public class HashTableResumen {
             //System.out.println(aux.getTitulo());
             return aux;
         }
-        JOptionPane.showMessageDialog(null, "Resumen no encontrado");
+        
         return null;
 
     }

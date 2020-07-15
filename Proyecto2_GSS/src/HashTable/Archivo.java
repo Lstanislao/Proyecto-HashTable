@@ -147,8 +147,16 @@ public class Archivo {
 
         String[] palabras = palabrasClaves.split(": ");
         String[] arregloPalabrasClaves = palabras[1].split(", ");
-
-        String tituloTxt = titulo;
+        
+        Resumen nuevoResumen = new Resumen(titulo, autores, resumen.toLowerCase(), arregloPalabrasClaves);
+        HashTableResumen temp = Central.getResumenes();
+        //temp.InsertarResumen(nuevoResumen);
+        boolean seguir = temp.InsertarResumen(nuevoResumen);
+        Central.setResumenes(temp);
+        
+        if(seguir)
+        {
+                    String tituloTxt = titulo;
         n = tituloTxt.length() - 1;
         //Lista aux2 = Central.getNombresResumenes();
         //System.out.println(tituloTxt+"hola");
@@ -176,16 +184,18 @@ public class Archivo {
 
         /* Se crea objeto resumen y se asigna cada atributo. Luego se inserta a 
         la tabla hash*/
-        Resumen nuevoResumen = new Resumen(titulo, autores, resumen.toLowerCase(), arregloPalabrasClaves);
+        
 
-        HashTableResumen temp = Central.getResumenes();
-        temp.InsertarResumen(nuevoResumen);
-        Central.setResumenes(temp);
+
 
         // Agrego titulo a la lista de titulos
         Lista titulos = Central.getTitulosResumenes();
         titulos.InsertarFinal(titulo);
         Central.setTitulosResumenes(titulos);
+            
+        }
+
+
 
     }
 }

@@ -7,6 +7,7 @@ package Ventanas;
 
 import HashTable.Central;
 import HashTable.HashTablePalabra;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -124,7 +125,15 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
         String input = busqueda.getText();//NECESITA SER VALIDADO
         HashTablePalabra hash = Central.getPalabras();
         String output = hash.BuscarDocumentos(input);
-        pantalla.setText(output);
+        if (output!=null)
+        {
+            pantalla.setText(output);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Palabra no encontrada");
+        }
+        
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
