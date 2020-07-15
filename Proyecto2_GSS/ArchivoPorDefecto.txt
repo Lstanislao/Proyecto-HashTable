@@ -3,4 +3,3 @@ Arquitectura referencial para mecanismos de Internacionalización y localizació
 GraphQL vs REST una comparacion desde la perspectiva de eficiencia de desempeño.txt
 Complemento de software para el diseño de fundaciones.txt
 
-

@@ -91,12 +91,14 @@ public class AnalizarArchivo extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        listaResumen.setFont(new java.awt.Font("AppleGothic", 1, 13)); // NOI18N
         jScrollPane2.setViewportView(listaResumen);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 540, 80));
 
         pantalla.setEditable(false);
         pantalla.setColumns(20);
+        pantalla.setFont(new java.awt.Font("AppleGothic", 0, 14)); // NOI18N
         pantalla.setRows(5);
         pantalla.setMargin(new java.awt.Insets(6, 6, 6, 6));
         jScrollPane1.setViewportView(pantalla);

@@ -60,6 +60,7 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
 
         pantalla.setEditable(false);
         pantalla.setColumns(20);
+        pantalla.setFont(new java.awt.Font("AppleGothic", 0, 13)); // NOI18N
         pantalla.setRows(5);
         jScrollPane1.setViewportView(pantalla);
 
@@ -83,6 +84,7 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 220, 40));
 
+        busqueda.setFont(new java.awt.Font("AppleGothic", 1, 16)); // NOI18N
         busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 busquedaActionPerformed(evt);
@@ -104,7 +106,7 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel6.setText("investigaciones relacionadas. Es importante");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 270, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 290, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/verde.png"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(800, 500));
