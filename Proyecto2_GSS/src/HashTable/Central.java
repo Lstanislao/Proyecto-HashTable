@@ -110,7 +110,8 @@ public class Central {
 
     /*
     Funcion que se encarga de leer el archivo por defecto, obtener los resumenes
-    del repositorio y leerlos para cargar las tablas hash.
+    del repositorio y acceder a dichos archivos para cargar la informacion a las
+    tablas hash.
      */
     public static void CargarResumenes() {
         File miArchivo;
@@ -127,7 +128,7 @@ public class Central {
                         System.out.println(linea + "me tienes YA LADILLADO");
                         NombresResumenes.InsertarFinal(linea);
                         File cargar = new File(linea);
-                        Archivo.LeerArchivo(cargar);
+                        boolean b = Archivo.LeerArchivo(cargar);
                     }
                 } catch (IOException ex) {
                     Logger.getLogger(Central.class.getName()).log(Level.SEVERE, null, ex);

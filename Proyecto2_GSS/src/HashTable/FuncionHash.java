@@ -32,8 +32,9 @@ public class FuncionHash {
           System.out.println(valor+ " 0");
         return valor;
     }*/
+    // TE DEJO ESTAS PARA QUE LAS COMENTES LUI
     public static long ValorPalabra2(String palabra) {
-        palabra.replace(" ", "");
+        palabra = palabra.replace(" ", "");
         System.out.println(palabra);
         int pos = 5;
         long valor = 0;

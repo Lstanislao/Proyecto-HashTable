@@ -19,8 +19,12 @@ public class HashTableResumen {
 
     private static final int Max = 50;
     public ListaR[] tabla; //hay que ponerlo privado pero mientras necesito verla para verificar que todo este bien
-    private int Elementos;
+    private int Elementos; // SE VA?
 
+    /* 
+    Constructor de la tabla. Cada posicion se incicializa con una lista de  
+    objetos palabra. Este fue el metodo elegido para tratar las colisiones.
+     */
     public HashTableResumen() {
         tabla = new ListaR[Max];
         for (int i = 0; i < Max; i++) {
@@ -44,20 +48,24 @@ public class HashTableResumen {
             return true;
         } else {
             JOptionPane.showMessageDialog(null, "La investigación ya ha sido "
-                    + "ingresada anteriormente. Intente agregar una investigación"
+                    + "ingresada anteriormente.\nIntente agregar una investigación"
                     + " diferente.");
             return false;
         }
     }
 
-    /* public void EliminarResumen(Resumen resumen)
-    {
-        int posicion;
-        posicion=Dispersion(resumen.getAutores());
-        NodoR eliminar = tabla[posicion].Buscar(resumen);
-        tabla[posicion].Eliminar(eliminar);
-        Elementos++;       
-    }*/
+//     public void EliminarResumen(Resumen resumen)
+//    {
+//        int posicion;
+//        posicion=Dispersion(resumen.getAutores());
+//        NodoR eliminar = tabla[posicion].Buscar(resumen);
+//        tabla[posicion].Eliminar(eliminar);
+//        Elementos++;       
+//    }
+    /*
+    Funcion que a partir de un objeto resumen, verifica si dicho resumen ya 
+    pertenece a la tabla hash.
+     */
     public Resumen BuscarResumen(Resumen resumen) {
         int posicion;
         posicion = Dispersion(resumen.getTitulo());
@@ -73,7 +81,8 @@ public class HashTableResumen {
     }
 
     /*
-    Funcion que verifica si un resumen ya pertenece a la tabla hash.
+    Funcion que a partir del titulo de la investigacion, verifica si un resumen 
+    ya pertenece a la tabla hash.
      */
     public Resumen BuscarResumen(String resumen) {
         int posicion;

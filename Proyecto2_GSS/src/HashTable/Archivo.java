@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -64,6 +65,7 @@ public class Archivo {
 
         }
 
+        // Solo si todas las condiciones se cumplen el archivo se considera valido
         archivoValido = tieneTitulo && tieneAutores && tieneResumen && tienePalabrasClaves;
         return archivoValido;
     }
@@ -73,9 +75,10 @@ public class Archivo {
     del mismo: el titulo, los autores, el cuerpo del resumen y las palabras claves.
     
     Una vez que obtengo todos los campos, creo un objeto Resumen y lo agrego a la
-    tabla hash.
+    tabla hash de resumenes. Tambien agrego las palabras claves a la tabla hash
+    de palabras claves.
      */
-    public static void LeerArchivo(File archivo) {
+    public static boolean LeerArchivo(File archivo) {
         String titulo = "";
         String autores = "";
         String resumen = "";
@@ -148,25 +151,29 @@ public class Archivo {
 
         // Arreglando formato de las palabras claves
         palabrasClaves = palabrasClaves.replace(".", "");
-        while (palabrasClaves.endsWith(" ")) {
-            palabrasClaves = palabrasClaves.substring(0, palabrasClaves.length() - 1);
+
+        String[] palabras = palabrasClaves.split(":");
+        String[] arregloPalabrasClaves = palabras[1].split(",");
+
+        for (int i = 0; i < arregloPalabrasClaves.length; i++) {
+            while (arregloPalabrasClaves[i].startsWith(" ")) {
+                arregloPalabrasClaves[i] = arregloPalabrasClaves[i].substring(1, arregloPalabrasClaves[i].length());
+            }
+
+            while (arregloPalabrasClaves[i].endsWith(" ")) {
+                arregloPalabrasClaves[i] = arregloPalabrasClaves[i].substring(0, arregloPalabrasClaves[i].length() - 1);
+            }
         }
 
-        System.out.println(palabrasClaves + "houla");
-
-        String[] palabras = palabrasClaves.split(": ");
-        String[] arregloPalabrasClaves = palabras[1].split(", ");
-
-        for (String s : arregloPalabrasClaves) {
-            System.out.println(s + "sos");
-        }
-
+        // Se crea objeto resumen y se intenta agregar a la tabla hash de resumenes
         Resumen nuevoResumen = new Resumen(titulo, autores, resumen.toLowerCase(), arregloPalabrasClaves);
         HashTableResumen temp = Central.getResumenes();
 
         boolean seguir = temp.InsertarResumen(nuevoResumen);
         Central.setResumenes(temp);
 
+        /* Unicamente si se agrego el resumen, se procede a agregar las palabras 
+        claves a la tabla hash de palabras claves*/
         if (seguir) {
             String tituloTxt = titulo;
             int n = tituloTxt.length() - 1;
@@ -183,7 +190,7 @@ public class Archivo {
             //Central.setNombresResumenes(aux2);
 
             /* Una vez que ya tengo la informacion, agrego las palabras claves del resumen
-        a la tabla hash y a la lista de palabras claves*/
+            a la tabla hash y a la lista de palabras claves*/
             HashTablePalabra hash = Central.getPalabras();
             Lista aux1 = Central.getPalabrasClaves();
             for (String a : arregloPalabrasClaves) {
@@ -197,14 +204,14 @@ public class Archivo {
             Central.setPalabrasClaves(aux1);
             Central.setPalabras(hash);
 
-            /* Se crea objeto resumen y se asigna cada atributo. Luego se inserta a 
-        la tabla hash*/
-            // Agrego titulo a la lista de titulos
+            // Agrego titulo a la lista de titulos de investigaciones
             Lista titulos = Central.getTitulosResumenes();
             titulos.InsertarFinal(titulo);
             Central.setTitulosResumenes(titulos);
 
+            return true;
         }
 
+        return false;
     }
 }

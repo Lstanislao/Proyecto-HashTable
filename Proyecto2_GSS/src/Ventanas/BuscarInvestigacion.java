@@ -62,6 +62,7 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
         pantalla.setColumns(20);
         pantalla.setFont(new java.awt.Font("AppleGothic", 0, 13)); // NOI18N
         pantalla.setRows(5);
+        pantalla.setMargin(new java.awt.Insets(6, 6, 6, 6));
         jScrollPane1.setViewportView(pantalla);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 470, 370));
@@ -122,19 +123,35 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonMenuActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        // GUARDAR
+        /* 
+        Boton de Guardar y salir: Se guardan todos los txt cargados en el 
+        repositorio en el archivo por defecto y finaliza la ejecucion del programa.
+         */
+
+        System.out.println(Central.getNombresResumenes().ListaResumenes());
+        Central.GuardarResumenesCargados();
 
         System.exit(0);
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        String input = busqueda.getText();//NECESITA SER VALIDADO
+        /*
+        Boton de Buscar Investigaciones: si el usuario ingreso una palabra clave
+        previamente en el area de texto, se busca dicha palabra clave. Si la 
+        encuentra, muestra en pantalla las investigaciones relacionada. De lo contrario,
+        muestra un mensaje de aviso.
+         */
+        String input = busqueda.getText();
 
         if (!input.isBlank()) {
-            int n = input.length() - 1;
 
-            if (" ".equals(input.substring(n))) {
-                input = input.substring(0, n);
+            // Se quitan los espacios en blanco antes y despues de la palabra
+            while (input.startsWith(" ")) {
+                input = input.substring(1, input.length());
+            }
+
+            while (input.endsWith(" ")) {
+                input = input.substring(0, input.length() - 1);
             }
 
             HashTablePalabra hash = Central.getPalabras();

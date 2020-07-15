@@ -33,6 +33,7 @@ public class AnalizarArchivo extends javax.swing.JFrame {
         agregarResumen(string);
     }
 
+    // Retorna un string con todos los elementos de la lista
     private String ListaAString(Lista lista) {
         Nodo aux = lista.getpFirst();
         String cadena = "";
@@ -94,7 +95,7 @@ public class AnalizarArchivo extends javax.swing.JFrame {
         listaResumen.setFont(new java.awt.Font("AppleGothic", 1, 13)); // NOI18N
         jScrollPane2.setViewportView(listaResumen);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 540, 80));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 540, 100));
 
         pantalla.setEditable(false);
         pantalla.setColumns(20);
@@ -103,7 +104,7 @@ public class AnalizarArchivo extends javax.swing.JFrame {
         pantalla.setMargin(new java.awt.Insets(6, 6, 6, 6));
         jScrollPane1.setViewportView(pantalla);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 620, 260));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 620, 250));
 
         jButton3.setFont(new java.awt.Font("AppleGothic", 0, 13)); // NOI18N
         jButton3.setText("ANALIZAR ARCHIVO");
@@ -150,7 +151,11 @@ public class AnalizarArchivo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        System.out.println("El resumen es: " + listaResumen.getSelectedValue());
+        /*
+        Boton de analizar archivo: si el usuario selecciono una investigacion
+        previamente, se muestran en pantalla un analisis de la frecuencia de las
+        palabras claves del repositorio y del resumen escogido en pantalla.
+         */
 
         HashTableResumen resumenes = Central.getResumenes();
         String titulo = listaResumen.getSelectedValue();
@@ -170,7 +175,13 @@ public class AnalizarArchivo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonMenuActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        // GUARDAR
+        /* 
+        Boton de Guardar y salir: Se guardan todos los txt cargados en el 
+        repositorio en el archivo por defecto y finaliza la ejecucion del programa.
+         */
+
+        System.out.println(Central.getNombresResumenes().ListaResumenes());
+        Central.GuardarResumenesCargados();
 
         System.exit(0);
     }//GEN-LAST:event_jButtonGuardarActionPerformed

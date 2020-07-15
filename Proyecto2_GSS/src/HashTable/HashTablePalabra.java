@@ -19,8 +19,12 @@ public class HashTablePalabra {
 
     static final int Max = 50;
     public ListaP[] tabla; //hay que ponerlo privado pero mientras necesito verla para verificar que todo este bien
-    private int Elementos;
+    private int Elementos; // SE BORRA?
 
+    /* 
+    Constructor de la tabla. Cada posicion se incicializa con una lista de  
+    objetos palabra. Este fue el metodo elegido para tratar las colisiones.
+     */
     public HashTablePalabra() {
         tabla = new ListaP[Max];
         for (int i = 0; i < Max; i++) {
@@ -30,24 +34,21 @@ public class HashTablePalabra {
     }
 
     //NOTA HAY QUE VERIFICAR QUE YA NO SE HAYA INGRESADO LUIS
-    /*public void InsertarPalabra(Palabra palabra)
-    {
-        int posicion;
-        posicion=Dispersion(palabra.getWord());
-        NodoP encontrado = tabla[posicion].Buscar(palabra);
-        if (encontrado==null)
-        {
-            tabla[posicion].InsertarInicio(palabra);
-            Elementos++;
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null,"El elemento que desea ingresar ya se encuentra en la tabla");
-        }
-
-    }*/
-
- /*
+//    public void InsertarPalabra(Palabra palabra)
+//    {
+//        int posicion;
+//        posicion=Dispersion(palabra.getWord());
+//        NodoP encontrado = tabla[posicion].Buscar(palabra);
+//        if (encontrado==null)
+//        {
+//            tabla[posicion].InsertarInicio(palabra);
+//            Elementos++;
+//        }
+//        else
+//        {
+//            JOptionPane.showMessageDialog(null,"El elemento que desea ingresar ya se encuentra en la tabla");
+//        }
+    /*
     Funcion que se encarga de insertar en la tabla hash una palabra clave nueva.
     En caso de que la palabra clave ya pertenezca a la tabla, se agrega el titulo 
     del resumen a la lista de resumenes relacionados con la palabra clave.
@@ -82,6 +83,10 @@ public class HashTablePalabra {
         Elementos++;
     }
 
+    /*
+    Funcion que a partir de un objeto palabra verifica si una palabra clave ya 
+    pertenece a la tabla hash.
+     */
     public Palabra BuscarPalabra(Palabra palabra) {
         int posicion;
         posicion = Dispersion(palabra.getWord());
@@ -97,7 +102,8 @@ public class HashTablePalabra {
     }
 
     /*
-    Funcion que verifica si una palabra clave ya pertenece a la tabla hash.
+    Funcion que a partir de un string que contiene una palabra clave, verifica 
+    si dicha palabra clave ya pertenece a la tabla hash.
      */
     public Palabra BuscarPalabra(String palabra) {
         palabra = palabra.toLowerCase();

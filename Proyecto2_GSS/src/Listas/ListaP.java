@@ -50,6 +50,7 @@ public class ListaP {
     }
 
 //-----------------------------------------------------------------
+    // Verifica si la lista esta vacia
     public boolean EsVacio() {
         return pFirst == null;
     }

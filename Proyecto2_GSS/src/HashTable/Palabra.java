@@ -17,6 +17,7 @@ public class Palabra {
     private int repeticion;
     private Lista resumenes;
 
+    // REPETICION SE VA?
     public Palabra(String word, int repeticion) {
         this.word = word;
         this.repeticion = repeticion;

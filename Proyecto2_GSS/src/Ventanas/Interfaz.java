@@ -21,7 +21,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     JFileChooser seleccionado = new JFileChooser();
     File archivo;
-    String nombreDelArchivoTxtSeleccionado;
+    String nombreDelArchivoTxtSeleccionado = "";
 
     public Interfaz() {
         initComponents();
@@ -114,7 +114,7 @@ public class Interfaz extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 130, 20));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 160, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/verde.png"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(800, 500));
@@ -140,8 +140,8 @@ public class Interfaz extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(null, "Es importante que el archivo seleccionado "
                 + "se encuentre en la carpeta del proyecto.");
-        Lista aux = Central.getNombresResumenes();
-        HashTableResumen hash = Central.getResumenes();
+
+        // Se verifica que el archivo sea un archivo de texto
         if (seleccionado.showDialog(this, "CARGAR ARCHIVO") == JFileChooser.APPROVE_OPTION) {
             archivo = seleccionado.getSelectedFile();
             if (archivo.canRead()) {
@@ -149,34 +149,36 @@ public class Interfaz extends javax.swing.JFrame {
                     nombreDelArchivoTxtSeleccionado = archivo.getName();
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR. Por favor seleccione un archivo de texto (.txt)");
+                    JOptionPane.showMessageDialog(null, "Error. Por favor seleccione un archivo de texto (.txt)");
                 }
             }
 
         }
 
-        if (Archivo.VerificarFormatoArchivo(archivo)) {
-            String nombre = nombreDelArchivoTxtSeleccionado.replace(".txt", "");
-            System.out.println(nombre + "SERA------------------------------------");
-            System.out.println(hash.BuscarResumen(nombre) + " AQUI-----------------------------------------");
-            if (hash.BuscarResumen(nombre) == null) {
-                aux.InsertarFinal(nombreDelArchivoTxtSeleccionado);
-                Archivo.LeerArchivo(archivo);
+        /*Se intenta agregar el nuevo resumen, si ya se encontraba en guardado, 
+        se muestra un mensaje de aviso*/
+        if (!nombreDelArchivoTxtSeleccionado.equals("")) {
+            Lista aux = Central.getNombresResumenes();
+
+            if (Archivo.VerificarFormatoArchivo(archivo)) {
+                boolean seAgrego = Archivo.LeerArchivo(archivo);
+                if (seAgrego) {
+                    aux.InsertarFinal(nombreDelArchivoTxtSeleccionado);
+                    Central.setNombresResumenes(aux);
+                    JOptionPane.showMessageDialog(null, "La investigación ha sido agregada correctamente.");
+
+                }
 
             } else {
-                JOptionPane.showMessageDialog(null, "Ese Resumen ya ha sido cargado");
+                String mensaje = "El formato del archivo seleccionado no es válido.\n"
+                        + "El formato del archivo debe ser:\n\n"
+                        + "Titulo\n\nAutores\nAutor1\n...[mas autores]...\nAutorN\n"
+                        + "\nResumen\n...[cuerpo del resumen]...\n\nPalabras claves:"
+                        + "palabra1, palabra2, ...[más palabras]..., palabraN.";
+                JOptionPane.showMessageDialog(null, mensaje);
             }
 
-        } else {
-            String mensaje = "El formato del archivo seleccionado no es válido.\n"
-                    + "El formato del archivo debe ser:\n\n"
-                    + "Titulo\n\nAutores\nAutor1\n...[mas autores]...\nAutorN\n"
-                    + "\nResumen\n...[cuerpo del resumen]...\n\nPalabras claves:"
-                    + "palabra1, palabra2, ...[más palabras]..., palabraN.";
-            JOptionPane.showMessageDialog(null, mensaje);
         }
-
-        Central.setNombresResumenes(aux);
         ;
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -187,6 +189,11 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+        /* 
+        Boton de Guardar y salir: Se guardan todos los txt cargados en el 
+        repositorio en el archivo por defecto y finaliza la ejecucion del programa.
+         */
+
         System.out.println(Central.getNombresResumenes().ListaResumenes());
         Central.GuardarResumenesCargados();
 
@@ -194,6 +201,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // Muestra las instrucciones sobre el uso del programa
         Instrucciones a = new Instrucciones();
         a.setVisible(true);
         this.setVisible(false);

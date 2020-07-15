@@ -61,10 +61,10 @@ public class Resumen {
             actual = actual.getPnext();
         }
 
-        /* Cuento las veces que se repite la palabra clave del resumen en el 
-        cuerpo del resumen*/
         estadistica += "\nNúmero de palabras del resumen:\n\n";
 
+        /* Cuento las veces que se repite la palabra clave del resumen en el 
+        cuerpo del resumen*/
         for (String palabraClave : palabrasClaves) {
             estadistica += contarRepeticion(palabraClave);
         }

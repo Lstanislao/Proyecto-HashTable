@@ -51,6 +51,7 @@ public class ListaR {
     }
 
 //-----------------------------------------------------------------
+    // Verifica si la lista esta vacia
     public boolean EsVacio() {
         return pFirst == null;
     }
@@ -140,8 +141,10 @@ public class ListaR {
         setSize(getSize() + 1);
     }
 
-    /* Busca un resumen en la lista y retorna el nodo donde lo encontro. Si no 
-    lo encuentra, retorna null*/
+    /* 
+    Funcion que a partir de un objeto resumen, busca un titulo en la lista y 
+    retorna el nodo donde lo encontro. Si no lo encuentra, retorna null.
+     */
     public NodoR Buscar(Resumen valor) {
         if (!EsVacio()) {
             boolean encontrado = false;
@@ -161,8 +164,11 @@ public class ListaR {
         }
     }
 
-    /* Busca un titulo en la lista y retorna el nodo donde lo encontro. Si no 
-    lo encuentra, retorna null*/
+    /* 
+    Funcion que a partir de un string con el titulo de la investigacion, busca 
+    un titulo en la lista y retorna el nodo donde lo encontro. Si no lo encuentra,
+    retorna null.
+     */
     public NodoR Buscar(String valor) {
         if (!EsVacio()) {
             boolean encontrado = false;
