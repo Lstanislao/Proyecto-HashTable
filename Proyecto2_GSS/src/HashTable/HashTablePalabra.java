@@ -47,13 +47,13 @@ public class HashTablePalabra {
 
     }*/
 
-    /*
+ /*
     Funcion que se encarga de insertar en la tabla hash una palabra clave nueva.
     En caso de que la palabra clave ya pertenezca a la tabla, se agrega el titulo 
     del resumen a la lista de resumenes relacionados con la palabra clave.
      */
     public void InsertarPalabra(String pal, String resumen) {
-        pal=pal.toLowerCase();
+        pal = pal.toLowerCase();
         Palabra palabra = new Palabra(pal);
         int posicion;
         posicion = Dispersion(palabra.getWord());
@@ -97,7 +97,7 @@ public class HashTablePalabra {
     Funcion que verifica si una palabra clave ya pertenece a la tabla hash.
      */
     public Palabra BuscarPalabra(String palabra) {
-        palabra=palabra.toLowerCase();
+        palabra = palabra.toLowerCase();
         int posicion;
         posicion = Dispersion(palabra);
         Palabra encontrado = tabla[posicion].Buscar(palabra);
@@ -106,7 +106,7 @@ public class HashTablePalabra {
             //System.out.println(encontrado.getWord());
             return encontrado;
         }
-        
+
         return null;
 
     }
@@ -115,17 +115,15 @@ public class HashTablePalabra {
     Funcion que busca las investigaciones relacionas con una palabra clave.
      */
     public String BuscarDocumentos(String word) {
-        word=word.toLowerCase();
+        word = word.toLowerCase();
         Palabra aux = BuscarPalabra(word);
         String resumenes = "Las investigaciones relacionadas con " + word + " son: \n\n";
-        if(aux!=null)
-        {
+        if (aux != null) {
             resumenes += (String) aux.getResumenes().ListaResumenes();
             return resumenes;
         }
         return null;
 
-        
     }
 
 }

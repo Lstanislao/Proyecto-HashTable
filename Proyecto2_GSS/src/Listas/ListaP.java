@@ -169,13 +169,16 @@ public class ListaP {
             NodoP pos = First();
             //while(pos!=null && encontrado==false)
             for (int i = 0; i < getSize(); i++) {
+                System.out.println("Comparo " + valor + " con " + pos.getDato().getWord());
                 if (pos.getDato().getWord().equals(valor)) {
+                    System.out.println("LO ENCONTRE " + pos.getDato().getWord());
                     encontrado = true;
                     break;
                 } else {
                     pos = Proximo(pos);
                 }
             }
+            System.out.println(pos);
             return pos.getDato();
         } else {
             return null;

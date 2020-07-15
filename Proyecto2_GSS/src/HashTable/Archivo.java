@@ -138,64 +138,63 @@ public class Archivo {
         autores = autores.substring(0, autores.length() - 2) + ".";
 
         // Arreglando formato de las palabras claves
-        int n = palabrasClaves.length() - 1;
         palabrasClaves = palabrasClaves.replace(".", "");
+        int n = palabrasClaves.length() - 1;
 
         if (" ".equals(palabrasClaves.substring(n))) {
             palabrasClaves = palabrasClaves.substring(0, n);
         }
 
+        System.out.println(palabrasClaves + "houla");
+
         String[] palabras = palabrasClaves.split(": ");
         String[] arregloPalabrasClaves = palabras[1].split(", ");
-        
+
+        for (String s : arregloPalabrasClaves) {
+            System.out.println(s + "sos");
+        }
+
         Resumen nuevoResumen = new Resumen(titulo, autores, resumen.toLowerCase(), arregloPalabrasClaves);
         HashTableResumen temp = Central.getResumenes();
         //temp.InsertarResumen(nuevoResumen);
         boolean seguir = temp.InsertarResumen(nuevoResumen);
         Central.setResumenes(temp);
-        
-        if(seguir)
-        {
-                    String tituloTxt = titulo;
-        n = tituloTxt.length() - 1;
-        //Lista aux2 = Central.getNombresResumenes();
-        //System.out.println(tituloTxt+"hola");
-        if (" ".equals(tituloTxt.substring(n))) {
-            tituloTxt = tituloTxt.substring(0, (n));
-        }
-        tituloTxt = tituloTxt.replace(".", "");
-        tituloTxt = tituloTxt + ".txt";
-        //System.out.println("MAMGUEVO QUE TE PASA QUE NO AGARRAS EL .TXT " +tituloTxt);
-        //aux2.InsertarFinal(tituloTxt);
-        //System.out.println("EXPLICAMEEE\n"+aux2.ListaResumenes());
-        //Central.setNombresResumenes(aux2);
 
-        /* Una vez que ya tengo la informacion, agrego las palabras claves del resumen
+        if (seguir) {
+            String tituloTxt = titulo;
+            n = tituloTxt.length() - 1;
+            //Lista aux2 = Central.getNombresResumenes();
+            //System.out.println(tituloTxt+"hola");
+            if (" ".equals(tituloTxt.substring(n))) {
+                tituloTxt = tituloTxt.substring(0, (n));
+            }
+            tituloTxt = tituloTxt.replace(".", "");
+            tituloTxt = tituloTxt + ".txt";
+            //System.out.println("MAMGUEVO QUE TE PASA QUE NO AGARRAS EL .TXT " +tituloTxt);
+            //aux2.InsertarFinal(tituloTxt);
+            //System.out.println("EXPLICAMEEE\n"+aux2.ListaResumenes());
+            //Central.setNombresResumenes(aux2);
+
+            /* Una vez que ya tengo la informacion, agrego las palabras claves del resumen
         a la tabla hash y a la lista de palabras claves*/
-        HashTablePalabra hash = Central.getPalabras();
-        Lista aux1 = Central.getPalabrasClaves();
-        for (String a : arregloPalabrasClaves) {
-            aux1.InsertarInicio(a);
-            hash.InsertarPalabra(a, titulo);
-        }
+            HashTablePalabra hash = Central.getPalabras();
+            Lista aux1 = Central.getPalabrasClaves();
+            for (String a : arregloPalabrasClaves) {
+                aux1.InsertarInicio(a);
+                hash.InsertarPalabra(a, titulo);
+            }
 
-        Central.setPalabrasClaves(aux1);
-        Central.setPalabras(hash);
+            Central.setPalabrasClaves(aux1);
+            Central.setPalabras(hash);
 
-        /* Se crea objeto resumen y se asigna cada atributo. Luego se inserta a 
+            /* Se crea objeto resumen y se asigna cada atributo. Luego se inserta a 
         la tabla hash*/
-        
+            // Agrego titulo a la lista de titulos
+            Lista titulos = Central.getTitulosResumenes();
+            titulos.InsertarFinal(titulo);
+            Central.setTitulosResumenes(titulos);
 
-
-
-        // Agrego titulo a la lista de titulos
-        Lista titulos = Central.getTitulosResumenes();
-        titulos.InsertarFinal(titulo);
-        Central.setTitulosResumenes(titulos);
-            
         }
-
-
 
     }
 }
