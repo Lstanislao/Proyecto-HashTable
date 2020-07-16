@@ -13,20 +13,16 @@ import Listas.Lista;
  */
 public class Palabra {
 
-    private String word;
-    private int repeticion;
-    private Lista resumenes;
+    private String word;// String palabra
+    private Lista resumenes;//resumenes que tiene asociada la palabra
 
-    // REPETICION SE VA?
     public Palabra(String word, int repeticion) {
         this.word = word;
-        this.repeticion = repeticion;
         this.resumenes = new Lista();
     }
 
     public Palabra(String word) {
         this.word = word;
-        this.repeticion = 0;
         this.resumenes = new Lista();
     }
 
@@ -36,14 +32,6 @@ public class Palabra {
 
     public void setWord(String word) {
         this.word = word;
-    }
-
-    public int getRepeticion() {
-        return repeticion;
-    }
-
-    public void setRepeticion(int repeticion) {
-        this.repeticion = repeticion;
     }
 
     public Lista getResumenes() {

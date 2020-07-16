@@ -1,5 +1,5 @@
-s.txt
-Arquitectura referencial para mecanismos de Internacionalización y localización en PHP.txt
 GraphQL vs REST una comparacion desde la perspectiva de eficiencia de desempeño.txt
 Complemento de software para el diseño de fundaciones.txt
+Arquitectura referencial para mecanismos de Internacionalización y localización en PHP.txt
+Sistema de diseño basado en Grid.txt
 

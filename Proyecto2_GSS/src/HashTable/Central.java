@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class Central {
 
     private static Lista PalabrasClaves = new Lista();
-    private static Lista NombresResumenes = new Lista();
+    private static Lista NombresResumenes = new Lista();//Nombre de los txt donde se encuentran los resumenes
     private static HashTablePalabra Palabras = new HashTablePalabra();
     private static HashTableResumen Resumenes = new HashTableResumen();
     private static boolean Iniciado = false;
@@ -83,8 +83,6 @@ public class Central {
      */
     public static void GuardarResumenesCargados() {
         String resumenes = NombresResumenes.ListaResumenes();
-        System.out.println(resumenes);
-
         File archivo;
         PrintWriter escribir;
         archivo = new File("ArchivoPorDefecto.txt");
@@ -125,7 +123,6 @@ public class Central {
                 try {
                     linea = almacenado.readLine();
                     if (!"".equals(linea) && linea != null) {
-                        System.out.println(linea + "me tienes YA LADILLADO");
                         NombresResumenes.InsertarFinal(linea);
                         File cargar = new File(linea);
                         boolean b = Archivo.LeerArchivo(cargar);
@@ -140,80 +137,4 @@ public class Central {
 
     }
 
-    /*Grafo mygraph = new Grafo(1000);
-        File miArchivo;
-        String nombre, calle, urb, line, cadena[];
-        int v1, v2, distancia;
-        miArchivo = new File("ArchivoPorDefecto.txt");
-        boolean lineaClientes = false;
-        boolean lineaCaminos = false;
-        
-        try {
-            FileReader fileReader
-                    = new FileReader(miArchivo);
-            BufferedReader bufferedReader
-                    = new BufferedReader(fileReader);
-
-           
-            while ((line = bufferedReader.readLine()) != null) {
-                if (!line.equals("")) {
-                    if (line.toLowerCase().equals("clientes")) {
-                        lineaClientes = true;
-                        line = bufferedReader.readLine();
-                    }
-                    if (line.toLowerCase().equals("caminos")) {
-                        lineaClientes = false;
-                        line = bufferedReader.readLine();
-                        lineaCaminos = true;
-                    }
-
-                    // Parte que inserta clientes en la lista clientes
-                    if (lineaClientes) {
-                        line = line.replace(", ", ",");
-                        cadena = line.split(",");
-                        nombre = cadena[1];
-                        urb = cadena[2];
-                        if (cadena.length > 3) {
-                            calle = cadena[3];
-                        } else {
-                            calle = "";
-                        }
-                        
-                        mygraph.NuevoV(nombre, calle, urb);
-
-                        // Parte que inserta caminos en la lista caminos
-                    } else if (lineaCaminos) {
-                        line = line.replace(", ", ",");
-                        cadena = line.split(",");
-                        String vertice1 = cadena[0];
-                        String vertice2 = cadena[0];
-                        if (!vertice1.equals("") && !vertice2.equals("")) {
-                            
-                            v1 = Integer.parseInt(cadena[0]) - 1;
-                            v2 = Integer.parseInt(cadena[1]) - 1;
-                            distancia = Integer.parseInt(cadena[2]);
-                            mygraph.NuevoA(v1, v2, distancia);
-                            
-                        }
-                    }
-                }
-                
-            }
-            
-            bufferedReader.close();
-        } catch (FileNotFoundException ex) {
-            System.out.println(
-                    "No se puede abrir este archivo'"
-                    + miArchivo + "'");
-        } catch (IOException ex) {
-            System.out.println(
-                    "No se puede leer este archivo '"
-                    + miArchivo + "'");
-            
-        } catch (IndexOutOfBoundsException ex) {
-            
-        }
-        Central.setGraph(mygraph);
-    }
-     */
 }

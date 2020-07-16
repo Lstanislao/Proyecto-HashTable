@@ -12,7 +12,7 @@ import HashTable.Palabra;
  * @author Luis Stanislao
  */
 public class ListaP {
-
+/*Clase lista de palabras se creo una lista especificamente para el hash de palabras  de tal forma de manipularse mas facilmente el Objecto palabra */
     private NodoP pFirst;
     private NodoP pLast;
     private int Size;
@@ -142,7 +142,9 @@ public class ListaP {
         }
         setSize(getSize() + 1);
     }
-
+    
+       /* Busca un elemento en la lista y retorna el objeto palabra donde lo encuentra.
+    Si no lo encuentra, retorna null*/
     public NodoP Buscar(Palabra valor) {
         if (!EsVacio()) {
             boolean encontrado = false;

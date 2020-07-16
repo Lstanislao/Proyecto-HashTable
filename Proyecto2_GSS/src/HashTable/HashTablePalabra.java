@@ -17,9 +17,9 @@ import javax.swing.JOptionPane;
  */
 public class HashTablePalabra {
 
-    static final int Max = 50;
-    public ListaP[] tabla; //hay que ponerlo privado pero mientras necesito verla para verificar que todo este bien
-    private int Elementos; // SE BORRA?
+    static final int Max = 100;
+    private ListaP[] tabla; //arreglo que funciona como hashtable
+
 
     /* 
     Constructor de la tabla. Cada posicion se incicializa con una lista de  
@@ -30,24 +30,7 @@ public class HashTablePalabra {
         for (int i = 0; i < Max; i++) {
             tabla[i] = new ListaP();
         }
-        Elementos = 0;
     }
-
-    //NOTA HAY QUE VERIFICAR QUE YA NO SE HAYA INGRESADO LUIS
-//    public void InsertarPalabra(Palabra palabra)
-//    {
-//        int posicion;
-//        posicion=Dispersion(palabra.getWord());
-//        NodoP encontrado = tabla[posicion].Buscar(palabra);
-//        if (encontrado==null)
-//        {
-//            tabla[posicion].InsertarInicio(palabra);
-//            Elementos++;
-//        }
-//        else
-//        {
-//            JOptionPane.showMessageDialog(null,"El elemento que desea ingresar ya se encuentra en la tabla");
-//        }
     /*
     Funcion que se encarga de insertar en la tabla hash una palabra clave nueva.
     En caso de que la palabra clave ya pertenezca a la tabla, se agrega el titulo 
@@ -62,7 +45,6 @@ public class HashTablePalabra {
         NodoP encontrado = tabla[posicion].Buscar(palabra);
         if (encontrado == null) {
             tabla[posicion].InsertarInicio(palabra);
-            Elementos++;
             insertada = true;
         } else {
             palabra = tabla[posicion].Buscar(pal);
@@ -74,15 +56,6 @@ public class HashTablePalabra {
 
         return insertada;
     }
-
-    public void EliminarPalabra(Palabra palabra) {
-        int posicion;
-        posicion = Dispersion(palabra.getWord());
-        NodoP eliminar = tabla[posicion].Buscar(palabra);
-        tabla[posicion].Eliminar(eliminar);
-        Elementos++;
-    }
-
     /*
     Funcion que a partir de un objeto palabra verifica si una palabra clave ya 
     pertenece a la tabla hash.
@@ -93,7 +66,7 @@ public class HashTablePalabra {
         NodoP encontrado = tabla[posicion].Buscar(palabra);
         if (encontrado != null) {
             Palabra aux = encontrado.getDato();
-            //System.out.println(aux.getWord());
+           
             return aux;
         }
         JOptionPane.showMessageDialog(null, "Palabra no encontrada");
@@ -112,7 +85,7 @@ public class HashTablePalabra {
         Palabra encontrado = tabla[posicion].Buscar(palabra);
         if (encontrado != null) {
 
-            //System.out.println(encontrado.getWord());
+            
             return encontrado;
         }
 

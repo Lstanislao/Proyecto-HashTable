@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author Luis Stanislao
  */
-public class Lista {
+public class Lista {//Clase lista clasica y sus primitivas 
 
     private Nodo pFirst;
     private Nodo pLast;
@@ -56,7 +56,7 @@ public class Lista {
     }
 
 //-----------------------------------------------------------------
-    // Verifica si la lista esta vacia
+
     public boolean EsVacio() {
         return pFirst == null;
     }

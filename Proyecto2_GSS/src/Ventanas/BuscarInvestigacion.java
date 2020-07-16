@@ -128,7 +128,6 @@ public class BuscarInvestigacion extends javax.swing.JFrame {
         repositorio en el archivo por defecto y finaliza la ejecucion del programa.
          */
 
-        System.out.println(Central.getNombresResumenes().ListaResumenes());
         Central.GuardarResumenesCargados();
 
         System.exit(0);

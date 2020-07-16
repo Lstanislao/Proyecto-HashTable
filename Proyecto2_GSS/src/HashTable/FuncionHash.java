@@ -11,31 +11,17 @@ package HashTable;
  */
 public class FuncionHash {
 
-    static final int Max = 50; // Numero de elementos de la tabla
+    static final int Max = 100; // Numero de elementos de la tabla
     static final double Factor = 0.318034;// Constante utilizada para hacer la dispersion por multiplicacion
-//cambiar para que no sea el boleta del libro JAJAJA
 
-    /*public static long ValorPalabra(String palabra)
-    {
-        palabra.replace(" ", "");
-        System.out.println(palabra);
-        long valor=0;
-        for (int i = 0; i < Math.min(palabra.length(),10) ; i++) 
-        {
-            valor = valor * 27 + (int)palabra.charAt(i); 
-        }
-        
-        if (valor < 0)
-        {
-            valor=-valor;
-        }  
-          System.out.println(valor+ " 0");
-        return valor;
-    }*/
-    // TE DEJO ESTAS PARA QUE LAS COMENTES LUI
+    /*El metodo de la multiplicacion consiste en multiplicar el numero obtenido de la palabra a traves de la codificacion
+    que se le da segun la tabala ASCII en las funciones ValorPalabra, por una costante decimal , para luego restarle la parte entera
+    y quedar con tan solo el decimal el cual se multiplica por el tamano de la tabla para asegurar que el numero generado este en los 
+    que compre del arreglo*/
+    
+    /*Otorga un valor numerico a la palabra si el metodo 1 falla por dar un numero muy grande*/
     public static long ValorPalabra2(String palabra) {
         palabra = palabra.replace(" ", "");
-        System.out.println(palabra);
         int pos = 5;
         long valor = 0;
         for (int i = 0; i < palabra.length(); i++) {
@@ -43,8 +29,9 @@ public class FuncionHash {
         }
         return valor;
     }
-
-    public static long ValorPalabra1(String palabra)//ESTA ES UN PRUEBA HAY QUE BORRARLA DESPUES 
+    
+    /*Otorga un valor numerico a la palabra multiplicando el codigo ascci del caracter por una costante y el valor acumulado del resto de los valores de la palabra*/
+    public static long ValorPalabra1(String palabra) 
     {
 
         long valor = 0;
@@ -52,7 +39,7 @@ public class FuncionHash {
             valor = valor * 17 + (int) palabra.charAt(i);
         }
 
-        if (valor < 0)//si el valor en un caso llegase a sobrepasar el limite se convierte en negativo por lo tanto se verifica que nomvaya a devolver un negativo 
+        if (valor < 0)
         {
             valor = -valor;
         }
@@ -63,24 +50,17 @@ public class FuncionHash {
     Funcion que se encarga de calcular la llave de un string. Es decir el indice
     donde sera insertado dicho string en la tabla hash. 
      */
-    public static int Dispersion(String palabra) {
-        System.out.println("");
-        System.out.println(palabra);
+    public static int Dispersion(String palabra) {      
         long valor = ValorPalabra1(palabra);
-        System.out.println(valor + " sos");
         double val;
         int llave;
         val = (Factor * valor) - Math.floor(Factor * valor);
-        System.out.println(val + " primer intento");
         if (val == 0) {
             valor = ValorPalabra2(palabra);
             val = (Factor * valor) - Math.floor(Factor * valor);
-            System.out.println("Segundo intento " + valor);
         }
         llave = (int) (val * Max);
-        System.out.println(llave + " esta es la llave");
         return llave;
-
     }
 
 }

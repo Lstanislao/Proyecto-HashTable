@@ -17,9 +17,9 @@ import javax.swing.JOptionPane;
  */
 public class HashTableResumen {
 
-    private static final int Max = 50;
-    public ListaR[] tabla; //hay que ponerlo privado pero mientras necesito verla para verificar que todo este bien
-    private int Elementos; // SE VA?
+    private static final int Max = 100;
+    public ListaR[] tabla; //arreglo con el cual funciona el hash
+
 
     /* 
     Constructor de la tabla. Cada posicion se incicializa con una lista de  
@@ -30,7 +30,6 @@ public class HashTableResumen {
         for (int i = 0; i < Max; i++) {
             tabla[i] = new ListaR();
         }
-        Elementos = 0;
     }
 
     /*
@@ -43,8 +42,6 @@ public class HashTableResumen {
         NodoR encontrado = tabla[posicion].Buscar(resumen);
         if (encontrado == null) {
             tabla[posicion].InsertarInicio(resumen);
-            Elementos++;
-            //NombresResumenes.InsertarInicio(resumen.getTitulo());
             return true;
         } else {
             JOptionPane.showMessageDialog(null, "La investigación ya ha sido "
@@ -54,14 +51,6 @@ public class HashTableResumen {
         }
     }
 
-//     public void EliminarResumen(Resumen resumen)
-//    {
-//        int posicion;
-//        posicion=Dispersion(resumen.getAutores());
-//        NodoR eliminar = tabla[posicion].Buscar(resumen);
-//        tabla[posicion].Eliminar(eliminar);
-//        Elementos++;       
-//    }
     /*
     Funcion que a partir de un objeto resumen, verifica si dicho resumen ya 
     pertenece a la tabla hash.
@@ -72,7 +61,6 @@ public class HashTableResumen {
         NodoR encontrado = tabla[posicion].Buscar(resumen);
         if (encontrado != null) {
             Resumen aux = encontrado.getDato();
-            //System.out.println(aux.getTitulo());
             return aux;
         }
 
@@ -90,7 +78,6 @@ public class HashTableResumen {
         NodoR encontrado = tabla[posicion].Buscar(resumen);
         if (encontrado != null) {
             Resumen aux = encontrado.getDato();
-            //System.out.println(aux.getTitulo());
             return aux;
         }
 

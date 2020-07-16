@@ -13,7 +13,7 @@ import Listas.NodoR;
  * @author Luis Stanislao
  */
 public class ListaR {
-
+/*Clase lista de palabras se creo una lista especificamente para el hash de palabras  de tal forma de manipularse mas facilmente el Objecto  resumen */
     private NodoR pFirst;
     private NodoR pLast;
     private int Size;

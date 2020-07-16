@@ -177,17 +177,12 @@ public class Archivo {
         if (seguir) {
             String tituloTxt = titulo;
             int n = tituloTxt.length() - 1;
-            //Lista aux2 = Central.getNombresResumenes();
-            //System.out.println(tituloTxt+"hola");
             if (" ".equals(tituloTxt.substring(n))) {
                 tituloTxt = tituloTxt.substring(0, (n));
             }
             tituloTxt = tituloTxt.replace(".", "");
             tituloTxt = tituloTxt + ".txt";
-            //System.out.println("MAMGUEVO QUE TE PASA QUE NO AGARRAS EL .TXT " +tituloTxt);
-            //aux2.InsertarFinal(tituloTxt);
-            //System.out.println("EXPLICAMEEE\n"+aux2.ListaResumenes());
-            //Central.setNombresResumenes(aux2);
+
 
             /* Una vez que ya tengo la informacion, agrego las palabras claves del resumen
             a la tabla hash y a la lista de palabras claves*/
