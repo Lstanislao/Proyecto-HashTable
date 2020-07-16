@@ -14,7 +14,7 @@ import Listas.Lista;
 public class Palabra {
 
     private String word;// String palabra
-    private Lista resumenes;//resumenes que tiene asociada la palabra
+    private Lista resumenes;//Resumenes que tiene asociada la palabra
 
     public Palabra(String word, int repeticion) {
         this.word = word;

@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -133,13 +132,18 @@ public class Archivo {
 
         }
 
-        // Arreglando formato del titulo
-        int x = titulo.length() - 2;
+        // Arreglando formato del titulo. Se remueven espacios antes y despues
+        while (titulo.startsWith(" ")) {
+            titulo = titulo.substring(1, titulo.length());
+        }
 
-        if (titulo.endsWith(". ")) {
-            titulo = titulo.substring(0, x);
-        } else {
-            titulo = titulo.substring(0, x + 1);
+        while (titulo.endsWith(" ")) {
+            titulo = titulo.substring(0, titulo.length() - 1);
+        }
+
+        //Si termina en punto, se remueve
+        if (titulo.endsWith(".")) {
+            titulo = titulo.substring(0, titulo.length() - 1);
         }
 
         // Arreglando formato del cuerpo del resumen
@@ -155,6 +159,7 @@ public class Archivo {
         String[] palabras = palabrasClaves.split(":");
         String[] arregloPalabrasClaves = palabras[1].split(",");
 
+        //Se remueven los espacios antes y despues de la palabra clave si hay
         for (int i = 0; i < arregloPalabrasClaves.length; i++) {
             while (arregloPalabrasClaves[i].startsWith(" ")) {
                 arregloPalabrasClaves[i] = arregloPalabrasClaves[i].substring(1, arregloPalabrasClaves[i].length());
@@ -175,14 +180,6 @@ public class Archivo {
         /* Unicamente si se agrego el resumen, se procede a agregar las palabras 
         claves a la tabla hash de palabras claves*/
         if (seguir) {
-            String tituloTxt = titulo;
-            int n = tituloTxt.length() - 1;
-            if (" ".equals(tituloTxt.substring(n))) {
-                tituloTxt = tituloTxt.substring(0, (n));
-            }
-            tituloTxt = tituloTxt.replace(".", "");
-            tituloTxt = tituloTxt + ".txt";
-
 
             /* Una vez que ya tengo la informacion, agrego las palabras claves del resumen
             a la tabla hash y a la lista de palabras claves*/

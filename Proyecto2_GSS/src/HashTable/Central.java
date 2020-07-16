@@ -22,12 +22,12 @@ import java.util.logging.Logger;
  */
 public class Central {
 
-    private static Lista PalabrasClaves = new Lista();
+    private static Lista PalabrasClaves = new Lista(); //Lista de palabras claves del repositorio
     private static Lista NombresResumenes = new Lista();//Nombre de los txt donde se encuentran los resumenes
     private static HashTablePalabra Palabras = new HashTablePalabra();
     private static HashTableResumen Resumenes = new HashTableResumen();
     private static boolean Iniciado = false;
-    private static Lista TitulosResumenes = new Lista();
+    private static Lista TitulosResumenes = new Lista();//Lista de titulos de resumenes del repositorio
 
     public static boolean isIniciado() {
         return Iniciado;

@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class HashTablePalabra {
 
-    static final int Max = 100;
-    private ListaP[] tabla; //arreglo que funciona como hashtable
+    static final int MAX = 100;
+    private ListaP[] tabla; //Arreglo que funciona como hash table
 
 
     /* 
@@ -26,11 +26,12 @@ public class HashTablePalabra {
     objetos palabra. Este fue el metodo elegido para tratar las colisiones.
      */
     public HashTablePalabra() {
-        tabla = new ListaP[Max];
-        for (int i = 0; i < Max; i++) {
+        tabla = new ListaP[MAX];
+        for (int i = 0; i < MAX; i++) {
             tabla[i] = new ListaP();
         }
     }
+
     /*
     Funcion que se encarga de insertar en la tabla hash una palabra clave nueva.
     En caso de que la palabra clave ya pertenezca a la tabla, se agrega el titulo 
@@ -50,12 +51,19 @@ public class HashTablePalabra {
             palabra = tabla[posicion].Buscar(pal);
 
         }
+
         Lista aux = palabra.getResumenes();
-        aux.InsertarFinal(resumen);
-        palabra.setResumenes(aux);
+
+        /*Solo lo agrego si el resumen no esta ya en la lista. Es para el remoto 
+        caso en que se repiten palabras claves en el mismo resumen*/
+        if (aux.Buscar(resumen) == null) {
+            aux.InsertarFinal(resumen);
+            palabra.setResumenes(aux);
+        }
 
         return insertada;
     }
+
     /*
     Funcion que a partir de un objeto palabra verifica si una palabra clave ya 
     pertenece a la tabla hash.
@@ -66,7 +74,7 @@ public class HashTablePalabra {
         NodoP encontrado = tabla[posicion].Buscar(palabra);
         if (encontrado != null) {
             Palabra aux = encontrado.getDato();
-           
+
             return aux;
         }
         JOptionPane.showMessageDialog(null, "Palabra no encontrada");
@@ -85,7 +93,6 @@ public class HashTablePalabra {
         Palabra encontrado = tabla[posicion].Buscar(palabra);
         if (encontrado != null) {
 
-            
             return encontrado;
         }
 

@@ -56,7 +56,6 @@ public class Lista {//Clase lista clasica y sus primitivas
     }
 
 //-----------------------------------------------------------------
-
     public boolean EsVacio() {
         return pFirst == null;
     }
@@ -147,13 +146,15 @@ public class Lista {//Clase lista clasica y sus primitivas
         setSize(getSize() + 1);
     }
 
-    /* Busca un elemento en la lista y retorna el nodo donde lo encontro. Si no 
-    lo encuentra, retorna null*/
+    /* 
+    Busca un elemento en la lista y retorna el nodo donde lo encontro. Si no 
+    lo encuentra, retorna null
+     */
     public Nodo Buscar(Object valor) {
         if (!EsVacio()) {
             boolean encontrado = false;
             Nodo pos = First();
-            //while(pos!=null && encontrado==false)
+
             for (int i = 0; i < getSize(); i++) {
                 if (pos.getDato() == valor) {
                     encontrado = true;

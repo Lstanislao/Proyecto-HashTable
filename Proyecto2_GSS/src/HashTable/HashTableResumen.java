@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class HashTableResumen {
 
-    private static final int Max = 100;
-    public ListaR[] tabla; //arreglo con el cual funciona el hash
+    private static final int MAX = 100;
+    public ListaR[] tabla; //Arreglo con el cual funciona el hash table
 
 
     /* 
@@ -26,8 +26,8 @@ public class HashTableResumen {
     objetos palabra. Este fue el metodo elegido para tratar las colisiones.
      */
     public HashTableResumen() {
-        tabla = new ListaR[Max];
-        for (int i = 0; i < Max; i++) {
+        tabla = new ListaR[MAX];
+        for (int i = 0; i < MAX; i++) {
             tabla[i] = new ListaR();
         }
     }
