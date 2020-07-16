@@ -9,14 +9,7 @@ package proyecto2;
  *
  * @author Luis Stanislao
  */
-import HashTable.*;
-
-import static HashTable.FuncionHash.*;
-import Listas.NodoP;
-import HashTable.Palabra;
-import Listas.Lista;
 import Ventanas.Interfaz;
-import java.io.File;
 
 public class Proyecto2 {
 
